@@ -1,0 +1,38 @@
+$height: 5rem;
+$width: 2.5rem;
+
+// TODO: change to before or after?
+
+.under-rounding {
+  width: 100%;
+
+  position: absolute;
+  height: $width;
+  bottom: -$width;
+
+  z-index: -1;
+
+  border-radius: 50% / 100%;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.under-rounding-content {
+
+}
+
+footer {
+  .upper-rounding {
+    width: 100%;
+
+    position: absolute;
+    height: $width;
+    top: -$width;
+
+    z-index: -1;
+
+    border-radius: 50% / 100%;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+}

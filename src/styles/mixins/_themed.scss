@@ -1,0 +1,34 @@
+// based on Nuxt.js color mode
+
+@mixin themed() {
+  @each $theme, $map in $themes {
+    .#{$theme}-mode & {
+      $theme-map: () !global;
+
+      @each $key, $submap in $map {
+        @debug 'test: ' $key;
+
+        $value: map-get(map-get($themes, $theme), '#{$key}');
+        $theme-map: map-merge($theme-map, ($key: $value)) !global;
+      }
+      @content;
+      $theme-map: null !global;
+    }
+  }
+}
+
+@mixin themed2() {
+  @each $theme, $map in $themes {
+    &.#{$theme}-mode {
+      @debug 'test';
+      $theme-map: () !global;
+      @each $key, $submap in $map {
+        @debug $submap;
+        $value: map-get(map-get($themes, $theme), '#{$key}');
+        $theme-map: map-merge($theme-map, ($key: $value)) !global;
+      }
+      @content;
+      $theme-map: null !global;
+    }
+  }
+}

@@ -1,0 +1,9 @@
+.collapsing.width {
+  -webkit-transition-property: width, visibility;
+  transition-property: width, visibility;
+  width: 0;
+  height: auto;
+
+  // Prevent text creating a new line
+  white-space: nowrap;
+}

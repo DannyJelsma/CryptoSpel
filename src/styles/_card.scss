@@ -1,0 +1,56 @@
+// Card
+.card {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+// Card Behind
+.card.card-behind {
+  background: none;
+  border: none;
+  box-shadow: none;
+
+  .card-body {
+    background: $card-bg;
+    border-radius: 0.25rem;
+    @if $enable-shadows {
+      box-shadow: 0 .5rem 1rem -.5rem grey;
+    }
+  }
+
+  .card-footer {
+    background: $card-behind-footer-bg;
+    width: 90%;
+    margin: 0 auto
+  }
+}
+
+$overflow: 1rem;
+
+// Card In Front
+// Todo: properly remove
+.card.card-in-front {
+  background: none;
+  border: none;
+
+  .card-header {
+    background: $primary;
+    color: $white;
+    width: 100%;
+    border-radius: 1.25rem;
+    padding: 1.5rem 1.5rem (1.5rem + $overflow) 1.5rem;
+  }
+
+  .card-body {
+    background: $white;
+    width: 97.5%;
+    border-radius: 0.25rem;
+
+    position: absolute;
+    bottom: $overflow;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    transform: translate(0, (100%));
+  }
+
+}

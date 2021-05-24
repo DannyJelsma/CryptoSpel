@@ -1,0 +1,32 @@
+
+.navbar-under-rounded.navbar {
+  $height: 5rem;
+
+  margin-bottom: $height / 5;
+
+  &::after {
+    width: 100%;
+
+    position: absolute;
+    height: $height;
+    bottom: -$height;
+    left: 0;
+    right: 0;
+
+    z-index: -1;
+
+    border-radius: 50% / 100%;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+
+    content: '';
+  }
+
+  @each $color, $value in $theme-colors {
+    &.bg-#{$color}::after {
+      background-color: $value;
+    }
+  }
+}
+
+// Todo add bg-... search

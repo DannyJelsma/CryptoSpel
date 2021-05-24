@@ -1,0 +1,174 @@
+
+$dark-gray-00: #121212;
+$dark-gray-01: #1e1e1e;
+$dark-gray-02: #232323;
+$dark-gray-03: #252525;
+$dark-gray-04: #272727;
+$dark-gray-06: #2c2c2c;
+$dark-gray-08: #2e2e2e;
+$dark-gray-12: #333333;
+$dark-gray-16: #363636;
+$dark-gray-24: #383838;
+
+$dark-gray-36: #3b3b3b;
+$dark-gray-52: #404040;
+
+$dark-theme-grays: (
+  'dark-gray-00': $dark-gray-00,
+  'dark-gray-01': $dark-gray-01,
+  'dark-gray-02': $dark-gray-02,
+  'dark-gray-03': $dark-gray-03,
+  'dark-gray-04': $dark-gray-04,
+  'dark-gray-06': $dark-gray-06,
+  'dark-gray-08': $dark-gray-08,
+  'dark-gray-12': $dark-gray-12,
+  'dark-gray-16': $dark-gray-16,
+  'dark-gray-24': $dark-gray-24
+);
+
+// Options
+
+$enable-shadows: false;
+
+
+// Spacing
+
+
+// Body
+
+$body-bg: $dark-gray-03;
+$body-color: $white;
+
+
+// Links
+
+
+// Paragraphs
+
+
+// Grid breakpoints
+
+
+// Grid containers
+
+
+// Grid columns
+
+
+// Components
+
+
+// Fonts
+
+$h1-color: $light;
+
+
+// Tables
+
+
+// Buttons + Forms
+
+
+// Buttons
+
+
+// Forms
+
+$input-color:         $white;
+$input-bg:            $dark-gray-16;
+$input-border-color:  $gray-700;
+
+$input-focus-color:         $input-color;
+$input-focus-bg:            $input-bg;
+$input-focus-border-color:  $input-border-color;
+
+$custom-control-indicator-bg: $dark-gray-16;
+
+$custom-control-indicator-border-color:  $gray-700;
+
+$floating-input-label-color:  $gray-500;
+
+// Form validation
+
+
+// Dropdowns
+
+
+// Z-index master list
+
+
+// Navs
+
+
+// Navbar
+
+
+// Pagination
+
+
+// Jumbotron
+
+
+// Cards
+
+$card-bg: $dark-gray-16;
+
+$card-behind-footer-bg: $dark-gray-08;
+
+// Tooltips
+
+
+// Popovers
+
+
+// Badges
+
+
+// Modals
+
+
+// Alerts
+
+
+// Progress bars
+
+
+// List group
+
+$list-group-border-color: $gray-600;
+$list-group-action-color: $white;
+
+$list-group-sidebar-bg:         $dark-gray-16;
+$list-group-sidebar-active-bg:  $dark-gray-52;
+
+// Image thumbnails
+
+
+// Figures
+
+
+// Breadcrumbs
+
+
+// Carousel
+
+
+// Close
+
+
+// Code
+
+
+// Printing
+
+
+// Sidebar
+
+$sidebar-border-radius:                   $border-radius;
+
+$sidebar-primary-nav-bg:                  $dark;
+
+$sidebar-secondary-nav-bg:                $dark-gray-16;
+$sidebar-secondary-nav-item-bg:           $gray-700;
+$sidebar-secondary-nav-link-color:        $light;
+$sidebar-secondary-nav-link-active-color: $primary;

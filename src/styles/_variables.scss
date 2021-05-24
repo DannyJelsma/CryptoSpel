@@ -1,0 +1,200 @@
+@import '~bootstrap/scss/functions', '~bootstrap/scss/variables'; // need functions for importing variables
+
+// (Global) Color system
+
+$caribbean-green:   #00c58e;
+$generic-viridian:  #108775;
+$charcoal:          #2c4a5d;
+
+$primary:   $caribbean-green;
+$secondary: $generic-viridian;
+$dark:      $charcoal;
+$gray:      $gray-200;
+
+$theme-colors: (
+  'primary':    $primary,
+  'secondary':  $secondary,
+  'dark':       $dark,
+  'gray':       $gray
+);
+
+
+// Light Theme
+
+$light-theme-colors: (
+  'default':  $light,
+  'opposite': $dark,
+);
+
+
+// Dark Theme
+
+$dark-theme-colors: (
+  'default':  $dark,
+  'opposite': $light
+);
+
+
+// Options
+
+$enable-shadows:    true;
+$enable-gradients:  true;
+
+
+// Spacing
+
+
+// Body
+
+
+// Links
+
+
+// Paragraphs
+
+
+// Grid breakpoints
+
+
+// Grid containers
+
+
+// Grid columns
+
+
+// Components
+
+$border-radius:               .75rem;
+
+//$transition-base:             all .2s ease-in-out !default;
+//$transition-fade:             opacity .15s linear !default;
+//$transition-collapse:         height .35s ease !default;
+
+$transition-base:             all .2s ease-in-out;
+$transition-fade:             opacity .15s linear;
+$transition-collapse:         height .35s ease;
+
+
+
+// Fonts
+
+$h1-color: $dark;
+
+
+// Tables
+
+
+// Buttons + Forms
+
+
+// Buttons
+
+// todo: remove gradient and shadow on default buttons
+
+//$input-btn-focus-box-shadow:  none;
+//$btn-focus-box-shadow:        none;
+
+
+// Forms
+
+$floating-input-label-color: $gray-700;
+
+$custom-control-indicator-checked-border-color: $primary;
+$custom-control-indicator-checked-bg: $primary;
+
+// Form validation
+
+
+// Dropdowns
+
+$dropdown-link-active-color:        $gray-900;
+$dropdown-link-active-bg:           $gray-300;
+
+
+// Z-index master list
+
+$zindex-sidebar:                    -1000;
+
+
+// Navs
+
+$nav-tabs-link-active-color:        $primary;
+
+
+// Navbar
+
+$navbar-dark-color:                 $white;
+
+
+// Pagination
+
+
+// Jumbotron
+
+
+// Cards
+
+$card-border-width:                 0;
+
+$card-behind-footer-bg:             $gray-200;
+
+
+// Tooltips
+
+
+// Popovers
+
+
+// Badges
+
+
+// Modals
+
+
+// Alerts
+
+
+// Progress bars
+
+
+// List group
+
+$list-group-sidebar-bg:             $white;
+$list-group-sidebar-active-bg:      $white;
+
+
+// Image thumbnails
+
+
+// Figures
+
+
+// Breadcrumbs
+
+$breadcrumb-bg:                     transparent;
+$breadcrumb-item-link-color:        $breadcrumb-divider-color;
+
+// Carousel
+
+
+// Close
+
+
+// Code
+
+
+// Printing
+
+
+// Sidebar
+
+$sidebar-border-radius:                   $border-radius;
+
+$sidebar-primary-nav-bg:                  $secondary;
+$sidebar-primary-nav-item-bg:             $primary;
+
+$sidebar-secondary-nav-bg:                $gray-200;
+$sidebar-secondary-nav-item-bg:           $gray-400;
+$sidebar-secondary-nav-link-color:        $dark;
+$sidebar-secondary-nav-link-active-color: $primary;
+$sidebar-secondary-nav-link-padding:      .5rem 1rem;

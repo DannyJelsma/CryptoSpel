@@ -1,0 +1,11 @@
+.dark-mode {
+  @each $color, $value in $dark-theme-colors {
+    --#{$color}: #{$value};
+  }
+}
+
+.light-mode {
+  @each $color, $value in $light-theme-colors {
+    --#{$color}: #{$value};
+  }
+}

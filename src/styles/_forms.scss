@@ -1,0 +1,70 @@
+.floating-label-group.form-label-group {
+  position: relative;
+
+  & > input::placeholder {
+    color: transparent;
+  }
+
+  & > input,
+  & > label {
+    height: 3.125rem;
+    padding: .75rem;
+  }
+
+  & > label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    margin-bottom: 0; /* Override default `<label>` margin */
+    color: $floating-input-label-color;
+    pointer-events: none;
+    cursor: text; /* Match the input under the label */
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    transition: all .1s ease-in-out;
+    padding-bottom: 1px;
+  }
+
+  & input::-webkit-input-placeholder,
+  & input:-ms-input-placeholder,
+  & input::-ms-input-placeholder,
+  & input::-moz-placeholder,
+  & input::placeholder {
+    color: transparent;
+  }
+
+  & input:not(:placeholder-shown) {
+    padding-top: 1.25rem;
+    padding-bottom: .25rem;
+  }
+
+  & input:not(:placeholder-shown) ~ label {
+    padding-top: .25rem;
+    padding-bottom: .25rem;
+    font-size: 12px;
+  }
+
+  /* Fallback for Edge
+  -------------------------------------------------- */
+  @supports (-ms-ime-align: auto) {
+    & > label {
+      display: none;
+    }
+    & input::-ms-input-placeholder {
+      color: #777;
+    }
+  }
+
+  /* Fallback for IE
+  -------------------------------------------------- */
+  @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    & > label {
+      display: none;
+    }
+    & input:-ms-input-placeholder {
+      color: #777;
+    }
+  }
+}
