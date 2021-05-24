@@ -7,6 +7,7 @@ import { AppLayoutComponent } from './_layout/app-layout/app-layout.component';
 
 import { LoginComponent } from './auth/login/login.component';
 import { HomeComponent } from './home/home.component';
+import { CurrenciesComponent } from './pool/currencies/currencies.component';
 
 const routes: Routes = [
   // App routes
@@ -17,6 +18,12 @@ const routes: Routes = [
       { path: '', component: HomeComponent, pathMatch: 'full' },
       // { path: 'profile', component: ProfileComponent }
     ],
+  },
+
+  // In-pool routes
+  {
+    path: 'pool/:id',
+    children: [{ path: 'currencies', component: CurrenciesComponent }],
   },
 
   // Auth routes

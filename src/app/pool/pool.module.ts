@@ -6,18 +6,14 @@ import { CurrenciesComponent } from './currencies/currencies.component';
 import { CurrencyComponent } from './currency/currency.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
-
-
 @NgModule({
   declarations: [
     CreateComponent,
     JoinComponent,
     CurrenciesComponent,
     CurrencyComponent,
-    DashboardComponent
+    DashboardComponent,
   ],
-  imports: [
-    CommonModule
-  ]
+  imports: [CommonModule],
 })
-export class PoolModule { }
+export class PoolModule {}

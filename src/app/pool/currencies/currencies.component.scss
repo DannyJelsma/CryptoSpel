@@ -1,0 +1,59 @@
+table {
+  background-color: white;
+  border-collapse: collapse;
+  border-radius: 6px;
+  border-style: hidden; 
+  box-shadow: 0 0 0 1px #ECECEC; 
+
+  .icon {
+    height: 32px;
+    width: auto;
+    margin-right: 6px;
+  }
+  
+  td, th {
+    vertical-align: middle;
+    padding: 16px;
+  }
+  
+  th {
+    border-color: inherit !important;
+    color: #919191;
+    font-weight: normal;
+    font-size: 14px;
+  }
+
+  td {
+    &.right {
+      text-align: right;
+    }
+
+    .price-change {
+      display: inline-block;
+      min-width: 50px;
+    }
+  }
+}
+
+.green {
+  color: #0ea046;
+}
+
+.red {
+  color: #a00e3a;
+}
+
+.tag {
+  &.green {
+    background: #159e4a3f;
+  }
+
+  &.red {
+    background: #a00e3a3f;
+  }
+
+  display: inline-block;
+  padding: 3px 6px;
+  font-size: 12px;
+  border-radius: 6px;
+}

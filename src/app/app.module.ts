@@ -7,24 +7,16 @@ import { AppLayoutComponent } from './_layout/app-layout/app-layout.component';
 import { AuthLayoutComponent } from './_layout/auth-layout/auth-layout.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './home/home.component';
-import { PoolComponent } from './pool/pool.component';
-import { PoolCurrenciesComponent } from './pool-currencies/pool-currencies.component';
-
+import { PoolModule } from './pool/pool.module';
 @NgModule({
   declarations: [
     AppComponent,
     AppLayoutComponent,
     AuthLayoutComponent,
     HomeComponent,
-    PoolComponent,
-    PoolCurrenciesComponent
   ],
-  imports: [
-    BrowserModule,
-    AuthModule,
-    AppRoutingModule
-  ],
+  imports: [BrowserModule, AuthModule, AppRoutingModule, PoolModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
