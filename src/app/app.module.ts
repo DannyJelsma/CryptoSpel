@@ -8,6 +8,7 @@ import { AuthLayoutComponent } from './_layout/auth-layout/auth-layout.component
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './home/home.component';
 import { PoolModule } from './pool/pool.module';
+import { HighchartsChartModule } from 'highcharts-angular';
 @NgModule({
   declarations: [
     AppComponent,
@@ -15,7 +16,13 @@ import { PoolModule } from './pool/pool.module';
     AuthLayoutComponent,
     HomeComponent,
   ],
-  imports: [BrowserModule, AuthModule, AppRoutingModule, PoolModule],
+  imports: [
+    BrowserModule,
+    AuthModule,
+    AppRoutingModule,
+    PoolModule,
+    HighchartsChartModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

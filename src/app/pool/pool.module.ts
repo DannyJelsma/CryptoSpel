@@ -5,6 +5,7 @@ import { JoinComponent } from './join/join.component';
 import { CurrenciesComponent } from './currencies/currencies.component';
 import { CurrencyComponent } from './currency/currency.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { HighchartsChartModule } from 'highcharts-angular';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,6 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     CurrencyComponent,
     DashboardComponent,
   ],
-  imports: [CommonModule],
+  imports: [CommonModule, HighchartsChartModule],
 })
 export class PoolModule {}

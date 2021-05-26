@@ -8,6 +8,7 @@ import { AppLayoutComponent } from './_layout/app-layout/app-layout.component';
 import { LoginComponent } from './auth/login/login.component';
 import { HomeComponent } from './home/home.component';
 import { CurrenciesComponent } from './pool/currencies/currencies.component';
+import { CurrencyComponent } from './pool/currency/currency.component';
 
 const routes: Routes = [
   // App routes
@@ -23,7 +24,10 @@ const routes: Routes = [
   // In-pool routes
   {
     path: 'pool/:id',
-    children: [{ path: 'currencies', component: CurrenciesComponent }],
+    children: [
+      { path: 'currencies', component: CurrenciesComponent },
+      { path: 'currency/:ticker', component: CurrencyComponent },
+    ],
   },
 
   // Auth routes

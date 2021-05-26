@@ -41,5 +41,9 @@ export class CurrenciesService {
     return this.currencies;
   }
 
+  getCurrencyByTicker(ticker: string): PoolModel.Currency {
+    return this.currencies.find((i) => i.ticker === ticker);
+  }
+
   constructor() {}
 }

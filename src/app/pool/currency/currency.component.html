@@ -1,1 +1,35 @@
-<p>currency works!</p>
+<!-- <div>
+  <img src="{{ currency.icon }}" />
+
+  {{ currency.name }}
+
+  {{ currency.price | currency: 'EUR' }}
+
+  <div class="float-right" style="display: inline-block;">
+    <button type="button" class="btn btn-outline-primary">Buy</button>
+    <button type="button" class="btn btn-outline-primary">Sell</button>
+  </div>
+</div> -->
+
+<div class="container mb-3">
+  <div class="row">
+    <div class="col-5 pl-0">
+      <div class="card p-3 mr-1 h-100">
+        <img src="{{ currency.icon }}" height="32" width="32" />
+
+        {{currency.name}}
+      </div>
+    </div>
+    <div class="col-7 pr-0">
+      <div class="card p-3 h-100">
+        <button type="button" class="btn btn-outline-primary">Buy</button>
+        <button type="button" class="btn btn-outline-primary">Sell</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card p-3">
+  <highcharts-chart [Highcharts]=" Highcharts" [options]="chartOptions" [constructorType]="'stockChart'"
+    style="width: 100%; height: 400px; display: block;"></highcharts-chart>
+</div>
