@@ -26,9 +26,10 @@ const routes: Routes = [
   // In-pool routes
   {
     path: 'pool/:id',
+    component: AppLayoutComponent,
     children: [
       { path: 'currencies', component: CurrenciesComponent },
-      { path: 'currency/:ticker', component: CurrencyComponent },
+      { path: 'currency/:name', component: CurrencyComponent },
     ],
   },
 

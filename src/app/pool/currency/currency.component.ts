@@ -13,6 +13,8 @@ HC_stock(Highcharts);
   styleUrls: ['./currency.component.scss'],
 })
 export class CurrencyComponent implements OnInit {
+  amountToTransact: number = 0.0;
+  sidebarContent: string = 'buy';
   Highcharts: typeof Highcharts = Highcharts;
   chartOptions: Highcharts.Options;
   currency: PoolModel.Currency;
@@ -22,10 +24,28 @@ export class CurrencyComponent implements OnInit {
     private currenciesService: CurrenciesService
   ) {}
 
+  onAmountChange(event) {
+    this.amountToTransact = event.target.value;
+  }
+
+  switchSidebarContent(switchTo: string) {
+    this.sidebarContent = switchTo;
+  }
+
+  doTransaction(type: string) {
+    if (type === 'buy') {
+      confirm('u spend ' + this.amountToTransact + '?');
+    } else if (type === 'sell') {
+      confirm('u about to get ' + this.amountToTransact);
+    }
+  }
+  //doPurchase
+  // https://www.npmjs.com/package/angular-notifier
+
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
-      let { ticker } = params;
-      this.currency = this.currenciesService.getCurrencyByTicker(ticker);
+      let { name } = params;
+      this.currency = this.currenciesService.getCurrencyByName(name);
     });
 
     // TODO: convert to realtime data
