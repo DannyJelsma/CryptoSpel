@@ -3,6 +3,7 @@ declare namespace PoolModel {
     id: number;
     name: string;
     icon: string;
+    graph: string;
     ticker: string;
     price: number;
     previous_price: number;

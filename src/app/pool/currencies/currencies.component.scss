@@ -52,8 +52,20 @@ table {
     background: #a00e3a3f;
   }
 
+  background: rgba(0,0,0,0.06);
   display: inline-block;
   padding: 3px 6px;
   font-size: 12px;
   border-radius: 6px;
+  margin: 0px 4px;
+}
+
+.graph {
+  &.green {
+    filter: hue-rotate(85deg) saturate(80%) brightness(0.85);
+  }
+
+  &.red {
+    filter: hue-rotate(300deg) saturate(210%) brightness(0.7) contrast(170%);
+  }
 }

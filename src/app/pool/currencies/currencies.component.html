@@ -2,6 +2,8 @@
   <table class="table">
     <thead>
       <tr>
+        <th scope="col">#</th>
+        <th scope="col"></th>
         <th scope="col">Currency</th>
         <th scope="col">Price</th>
         <th scope="col">24h change</th>
@@ -11,20 +13,29 @@
     <tbody>
       <tr *ngFor="let currency of getCurrencies()" class="table-row">
         <td>
-          <img class="icon" src="{{ currency.icon }}" />
-          {{ currency.name }}
-          {{ currency.ticker }}
+          {{ currency.id }}
         </td>
 
-        <!-- find price formatting pipe -->
-        <td>{{ currency.price | currency: "EUR" }}</td>
-        <td [ngClass]="currency.price - currency.previous_price <= 0 ? 'red' : 'green'">
-          <div class='price-change'>
-            {{ (currency.price - currency.previous_price) /
-          currency.previous_price | percent }}
+        <td class="text-center">
+          <img [ngClass]="currency.change <= 0 ? 'red' : 'green'" class="graph" src="{{ currency.graph }}" />
+        </td>
+
+        <td>
+          <img class="icon" src="{{ currency.icon }}" />
+          {{ currency.name }}
+
+          <div class="tag">
+            {{ currency.ticker }}
           </div>
-          <div class="tag" [ngClass]="currency.price - currency.previous_price <= 0 ? 'red' : 'green'">
-            {{ currency.price - currency.previous_price | currency: "EUR" }}
+        </td>
+
+        <td>{{ currency.price | currency: "EUR" }}</td>
+        <td [ngClass]="currency.change <= 0 ? 'red' : 'green'">
+          <div class='price-change'>
+            {{ currency.change > 0 ? '+' : null }}{{ currency.relative_change | percent }}
+          </div>
+          <div class="tag" [ngClass]="currency.change <= 0 ? 'red' : 'green'">
+            {{ currency.change > 0 ? '+' : null }}{{ currency.change | currency: "EUR" }}
           </div>
         </td>
         <td class="right">
