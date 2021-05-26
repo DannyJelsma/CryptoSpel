@@ -9,12 +9,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './home/home.component';
 import { PoolModule } from './pool/pool.module';
 import { HighchartsChartModule } from 'highcharts-angular';
+import { SharedModule } from './_shared/shared.module';
+import { HeaderComponent } from './_layout/header/header.component';
 @NgModule({
   declarations: [
     AppComponent,
     AppLayoutComponent,
     AuthLayoutComponent,
     HomeComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
@@ -22,6 +25,7 @@ import { HighchartsChartModule } from 'highcharts-angular';
     AppRoutingModule,
     PoolModule,
     HighchartsChartModule,
+    SharedModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

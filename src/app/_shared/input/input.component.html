@@ -1,0 +1,21 @@
+<p>input works!</p>
+<div
+  class="form-label-group"
+  [class]="floating && placeholder.length != 0 ? 'floating-label-group' : ''"
+>
+  <input
+    [type]="type"
+    [placeholder]="placeholder"
+    [(ngModel)]="value"
+
+    class="form-control"
+
+    autofocus
+    [required]="required"
+  >
+
+  <label *ngIf="floating" [for]="value">{{ placeholder }}</label>
+
+</div>
+{{floating}}
+{{required}}
