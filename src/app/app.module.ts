@@ -8,14 +8,24 @@ import { AuthLayoutComponent } from './_layout/auth-layout/auth-layout.component
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './home/home.component';
 import { PoolModule } from './pool/pool.module';
+import { HeaderComponent } from './_layout/header/header.component';
+import { SharedModule } from './_shared/shared.module';
+
 @NgModule({
   declarations: [
     AppComponent,
     AppLayoutComponent,
     AuthLayoutComponent,
     HomeComponent,
+    HeaderComponent,
   ],
-  imports: [BrowserModule, AuthModule, AppRoutingModule, PoolModule],
+  imports: [
+    BrowserModule,
+    AuthModule,
+    AppRoutingModule,
+    SharedModule,
+    PoolModule
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

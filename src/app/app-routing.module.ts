@@ -6,6 +6,8 @@ import { AuthLayoutComponent } from './_layout/auth-layout/auth-layout.component
 import { AppLayoutComponent } from './_layout/app-layout/app-layout.component';
 
 import { LoginComponent } from './auth/login/login.component';
+import { RegisterComponent } from './auth/register/register.component';
+
 import { HomeComponent } from './home/home.component';
 import { CurrenciesComponent } from './pool/currencies/currencies.component';
 
@@ -32,8 +34,7 @@ const routes: Routes = [
     component: AuthLayoutComponent,
     children: [
       { path: 'login', component: LoginComponent },
-      // { path: 'about', component: AboutComponent },
-      // { path: 'test/:id', component: AboutComponent }
+      { path: 'register', component: RegisterComponent },
     ],
   },
 

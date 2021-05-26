@@ -6,10 +6,18 @@ $caribbean-green:   #00c58e;
 $generic-viridian:  #108775;
 $charcoal:          #2c4a5d;
 
-$primary:   $caribbean-green;
-$secondary: $generic-viridian;
-$dark:      $charcoal;
+$blue: #1976d2;
+$red: #DD0031;
+$dark-blue: #092a4c;
+
+//$primary:   $caribbean-green;
+//$secondary: $generic-viridian;
+//$dark:      $charcoal;
 $gray:      $gray-200;
+
+$primary: $red;
+$secondary: $blue;
+$dark:  $dark-blue;
 
 $theme-colors: (
   'primary':    $primary,

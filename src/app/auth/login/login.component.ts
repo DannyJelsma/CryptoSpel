@@ -1,22 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
-
-const validTypes = [
-  'text',
-  'password',
-  'email',
-  'number',
-  'url',
-  'tel',
-  'search',
-  'range',
-  'color',
-  'date',
-  'time',
-  'datetime',
-  'datetime-local',
-  'month',
-  'week'
-];
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-login',
@@ -24,16 +6,5 @@ const validTypes = [
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  @Input() value: string;
-  @Input() type = 'text';
-  @Input() required: false;
-  @Input() placeholder: '';
-  @Input() floating = false;
-
-  constructor() {
-  }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }
