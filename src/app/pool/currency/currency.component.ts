@@ -18,6 +18,7 @@ export class CurrencyComponent implements OnInit {
   Highcharts: typeof Highcharts = Highcharts;
   chartOptions: Highcharts.Options;
   currency: PoolModel.Currency;
+  dailyChange: number;
 
   constructor(
     private route: ActivatedRoute,
@@ -46,6 +47,7 @@ export class CurrencyComponent implements OnInit {
     this.route.params.subscribe((params) => {
       let { name } = params;
       this.currency = this.currenciesService.getCurrencyByName(name);
+      this.dailyChange = this.currency.price - this.currency.previous_price;
     });
 
     // TODO: convert to realtime data

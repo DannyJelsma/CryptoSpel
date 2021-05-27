@@ -11,4 +11,27 @@
 // Bootstrap
 @import "~bootstrap/scss/bootstrap";
 
+.tag {
+  &.green {
+    background: #159e4a3f;
+  }
 
+  &.red {
+    background: #a00e3a3f;
+  }
+
+  background: rgba(0,0,0,0.06);
+  display: inline-block;
+  padding: 3px 6px;
+  font-size: 12px;
+  border-radius: 6px;
+  margin: 0px 4px;
+}
+
+.green {
+  color: #0ea046;
+}
+
+.red {
+  color: #a00e3a;
+}
