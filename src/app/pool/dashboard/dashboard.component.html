@@ -1,1 +1,65 @@
-<p>dashboard works!</p>
+<div class="p-3">
+  <div class="table-responsive-sm">
+    <h3>
+      Portfolio
+    </h3>
+    <table class="table borderless">
+      <thead>
+        <tr>
+          <th class="col-1">#</th>
+          <th class="col-2">Asset</th>
+          <th class="col-2">Amount</th>
+          <th class="col-2">Profit</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            1
+          </td>
+          <td>
+            Bitcoin
+          </td>
+          <td>
+            0.3817271 BTC
+          </td>
+          <td>
+            {{ 231.32 | currency: 'EUR'}}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="table-responsive-sm mt-3">
+    <h3>
+      Leaderboard
+    </h3>
+    <table class="table borderless">
+      <thead>
+        <tr>
+          <th class="col-1">#</th>
+          <th class="col-2">Username</th>
+          <th class="col-2">Value</th>
+          <th class="col-2">Profit</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            1
+          </td>
+          <td>
+            ArtAss
+          </td>
+          <td>
+            {{ 53872.32 | currency: 'EUR'}}
+          </td>
+          <td>
+            {{ 9872.32 | currency: 'EUR'}}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

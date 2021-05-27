@@ -24,16 +24,16 @@
         <!-- some info -->
         <div class="d-flex justify-content-between p-3 coin-overview">
           <div class="d-flex align-items-center">
-            <img [src]="currency.icon" height="32" width="32" class="me-1">
-            <div class="block">{{ currency.name }}</div>
+            <img [src]="currency.icon" height="32" width="32">
+            <div class="block ms-2">{{ currency.name }}</div>
           </div>
           <div class="d-flex align-items-center">
             <div class="d-flex me-1">
               {{ currency.price | currency: 'EUR' }}
-            </div>
-            <div class="font-weight-bold" [ngClass]="dailyChange <= 0 ? 'red' : 'green'">{{
-            dailyChange > 0 ? '+' : null }}{{ dailyChange
-            / currency.previous_price | percent }}
+              <div class="font-weight-bold small-text ms-1 align-top" [ngClass]="dailyChange <= 0 ? 'red' : 'green'">{{
+              dailyChange > 0 ? '+' : null }}{{ dailyChange
+              / currency.previous_price | percent }}
+              </div>
             </div>
           </div>
         </div>

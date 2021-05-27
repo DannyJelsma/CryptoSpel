@@ -1,1 +1,25 @@
-<p>create works!</p>
+<form>
+  <h3>
+    Create Pool
+  </h3>
+  <div class="mb-3">
+    <label class="form-label">Name</label>
+    <input class="form-control">
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Budget</label>
+    <!-- <span class="input-group-text">$</span> -->
+    <input type="number" class="form-control">
+    <div class="form-text">Amount of funds each participant will receive.</div>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">End Date</label>
+    <input type="date" class="form-control">
+    <div class="form-text">Date at which the pool will close and the winner will
+      be decided.</div>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Create</button>
+</form>

@@ -11,6 +11,8 @@ import { RegisterComponent } from './auth/register/register.component';
 import { HomeComponent } from './home/home.component';
 import { CurrenciesComponent } from './pool/currencies/currencies.component';
 import { CurrencyComponent } from './pool/currency/currency.component';
+import { CreateComponent } from './pool/create/create.component';
+import { DashboardComponent } from './pool/dashboard/dashboard.component';
 
 const routes: Routes = [
   // App routes
@@ -19,6 +21,7 @@ const routes: Routes = [
     component: AppLayoutComponent,
     children: [
       { path: '', component: HomeComponent, pathMatch: 'full' },
+      { path: 'pool/create', component: CreateComponent },
       // { path: 'profile', component: ProfileComponent }
     ],
   },
@@ -30,6 +33,7 @@ const routes: Routes = [
     children: [
       { path: 'currencies', component: CurrenciesComponent },
       { path: 'currency/:name', component: CurrencyComponent },
+      { path: 'dashboard', component: DashboardComponent },
     ],
   },
 
