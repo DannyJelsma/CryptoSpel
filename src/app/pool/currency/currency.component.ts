@@ -72,8 +72,20 @@ export class CurrencyComponent implements OnInit {
           data,
         },
       ],
+      scrollbar: {
+        enabled: false,
+      },
       xAxis: {
         type: 'datetime',
+        gridLineWidth: 0,
+        lineWidth: 0,
+        tickLength: 0,
+      },
+      yAxis: {
+        gridLineWidth: 0,
+        labels: {
+          align: 'left',
+        },
       },
     };
   }
