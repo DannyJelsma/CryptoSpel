@@ -8,4 +8,13 @@ declare namespace PoolModel {
     price: number;
     previous_price: number;
   }
+
+  export interface Coin {
+    history: Array<Price>;
+  }
+
+  export interface Price {
+    date: number;
+    price: number;
+  }
 }

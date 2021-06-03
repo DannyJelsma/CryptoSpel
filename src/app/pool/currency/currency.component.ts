@@ -4,6 +4,7 @@ import { CurrenciesService } from '../currencies.service';
 import * as Highcharts from 'highcharts';
 import HC_stock from 'highcharts/modules/stock';
 import * as moment from 'moment';
+import { HttpClient } from '@angular/common/http';
 
 HC_stock(Highcharts);
 
@@ -22,7 +23,8 @@ export class CurrencyComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private currenciesService: CurrenciesService
+    private currenciesService: CurrenciesService,
+    private http: HttpClient
   ) {}
 
   onAmountChange(event) {
@@ -40,53 +42,58 @@ export class CurrencyComponent implements OnInit {
       confirm('u about to get ' + this.amountToTransact);
     }
   }
-  //doPurchase
-  // https://www.npmjs.com/package/angular-notifier
 
   ngOnInit(): void {
+    // TODO: change
     this.route.params.subscribe((params) => {
       let { name } = params;
       this.currency = this.currenciesService.getCurrencyByName(name);
       this.dailyChange = this.currency.price - this.currency.previous_price;
     });
 
+    this.http
+      .get(`http://localhost:3000/history/${this.currency.ticker}EUR`)
+      .subscribe((response: PoolModel.Coin) => {
+        const history = response.history;
+        const data = history.map(({ date, price }) => [date, price]);
+        this.chartOptions = {
+          series: [
+            {
+              type: 'line',
+              data,
+            },
+          ],
+          scrollbar: {
+            enabled: false,
+          },
+          xAxis: {
+            type: 'datetime',
+            gridLineWidth: 0,
+            lineWidth: 0,
+            tickLength: 0,
+          },
+          yAxis: {
+            gridLineWidth: 0,
+            labels: {
+              align: 'left',
+            },
+          },
+        };
+      });
+
     // TODO: convert to realtime data
     // generate some sample chart information
-    let data = [];
-    let currentPrice = this.currency.price;
+    // let data = [];
+    // let currentPrice = this.currency.price;
 
-    for (let i = 0; i < 3 * 365; i++) {
-      const date = moment().subtract(i, 'days').valueOf();
-      const max = Math.ceil(0.15 * currentPrice);
-      const min = Math.floor(-0.15 * currentPrice);
-      currentPrice += Math.floor(Math.random() * (max - min + 1) + min);
-      data.push([date, currentPrice]);
-    }
+    // for (let i = 0; i < 3 * 365; i++) {
+    //   const date = moment().subtract(i, 'days').valueOf();
+    //   const max = Math.ceil(0.15 * currentPrice);
+    //   const min = Math.floor(-0.15 * currentPrice);
+    //   currentPrice += Math.floor(Math.random() * (max - min + 1) + min);
+    //   data.push([date, currentPrice]);
+    // }
 
-    data = data.reverse();
-
-    this.chartOptions = {
-      series: [
-        {
-          type: 'line',
-          data,
-        },
-      ],
-      scrollbar: {
-        enabled: false,
-      },
-      xAxis: {
-        type: 'datetime',
-        gridLineWidth: 0,
-        lineWidth: 0,
-        tickLength: 0,
-      },
-      yAxis: {
-        gridLineWidth: 0,
-        labels: {
-          align: 'left',
-        },
-      },
-    };
+    // data = data.reverse();
   }
 }
