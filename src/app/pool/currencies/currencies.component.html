@@ -11,9 +11,9 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let currency of getCurrencies()" class="table-row">
+      <tr *ngFor="let currency of currencies; let i = index" class="table-row">
         <td>
-          {{ currency.id }}
+          {{ i + 1 }}
         </td>
 
         <td class="text-center">

@@ -8,19 +8,21 @@ import { CurrenciesService } from '../currencies.service';
   styleUrls: ['./currencies.component.scss'],
 })
 export class CurrenciesComponent implements OnInit {
+  currencies: PoolModel.Currency[] = [];
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private currenciesService: CurrenciesService
   ) {}
 
-  getCurrencies(): any {
-    // TODO: move logic to service and add to interface?
-    let currencies: any[] = this.currenciesService.getCurrencies();
-    return currencies.map((i) => {
-      i.change = i.price - i.previous_price;
-      i.relative_change = i.change / i.previous_price;
-      return i;
+  getCurrencies(): void {
+    this.currenciesService.getCurrencies().subscribe((currencies) => {
+      this.currencies = currencies.map((i) => {
+        i.change = i.price - i.previous_price;
+        i.relative_change = i.change / i.previous_price;
+        return i;
+      });
     });
   }
 
@@ -31,5 +33,7 @@ export class CurrenciesComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getCurrencies();
+  }
 }

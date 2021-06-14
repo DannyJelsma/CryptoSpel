@@ -7,6 +7,7 @@ import * as moment from 'moment';
 import { HttpClient } from '@angular/common/http';
 
 HC_stock(Highcharts);
+window.Highcharts = Highcharts;
 
 @Component({
   selector: 'app-currency',
@@ -47,39 +48,45 @@ export class CurrencyComponent implements OnInit {
     // TODO: change
     this.route.params.subscribe((params) => {
       let { name } = params;
-      this.currency = this.currenciesService.getCurrencyByName(name);
-      this.dailyChange = this.currency.price - this.currency.previous_price;
-    });
 
-    this.http
-      .get(`http://localhost:3000/history/${this.currency.ticker}EUR`)
-      .subscribe((response: PoolModel.Coin) => {
-        const history = response.history;
-        const data = history.map(({ date, price }) => [date, price]);
-        this.chartOptions = {
-          series: [
-            {
-              type: 'line',
-              data,
-            },
-          ],
-          scrollbar: {
-            enabled: false,
-          },
-          xAxis: {
-            type: 'datetime',
-            gridLineWidth: 0,
-            lineWidth: 0,
-            tickLength: 0,
-          },
-          yAxis: {
-            gridLineWidth: 0,
-            labels: {
-              align: 'left',
-            },
-          },
-        };
+      // nesting :/
+      this.currenciesService.getCurrencies().subscribe((currencies) => {
+        this.currency = currencies.find(
+          (i) => i.name.toLowerCase() === name.toLowerCase()
+        );
+        this.dailyChange = this.currency.price - this.currency.previous_price;
+
+        this.http
+          .get(`http://localhost:3000/history/${this.currency.ticker}EUR`)
+          .subscribe((response: PoolModel.Coin) => {
+            const history = response.history;
+            const data = history.map(({ date, price }) => [date, price]);
+            this.chartOptions = {
+              series: [
+                {
+                  type: 'line',
+                  data,
+                },
+              ],
+              scrollbar: {
+                enabled: false,
+              },
+              xAxis: {
+                type: 'datetime',
+                gridLineWidth: 0,
+                lineWidth: 0,
+                tickLength: 0,
+              },
+              yAxis: {
+                gridLineWidth: 0,
+                labels: {
+                  align: 'left',
+                },
+              },
+            };
+          });
       });
+    });
 
     // TODO: convert to realtime data
     // generate some sample chart information

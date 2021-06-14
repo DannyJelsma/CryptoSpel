@@ -1,51 +1,42 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable, of } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CurrenciesService {
-  currencies: PoolModel.Currency[] = [
-    {
-      id: 1,
-      name: 'Bitcoin',
-      icon: 'https://s2.coinmarketcap.com/static/img/coins/64x64/1.png',
-      graph:
-        'https://s3.coinmarketcap.com/generated/sparklines/web/7d/usd/1.png',
-      ticker: 'BTC',
-      price: 32120.25,
-      previous_price: 39520.21,
-    },
-    {
-      id: 2,
-      name: 'Ethereum',
-      icon: 'https://s2.coinmarketcap.com/static/img/coins/64x64/1027.png',
-      graph:
-        'https://s3.coinmarketcap.com/generated/sparklines/web/7d/usd/1027.png',
-      ticker: 'ETH',
-      price: 2155.64,
-      previous_price: 2100.9,
-    },
-    {
-      id: 3,
-      name: 'Cardano',
-      icon: 'https://s2.coinmarketcap.com/static/img/coins/64x64/2010.png',
-      graph:
-        'https://s3.coinmarketcap.com/generated/sparklines/web/7d/usd/2010.png',
-      ticker: 'ADA',
-      price: 1.34,
-      previous_price: 1.92,
-    },
-  ];
+  // ! is there a way we can just store all the currencies in this service, some
+  // ! sort of singleton?
 
-  getCurrencies(): PoolModel.Currency[] {
-    return this.currencies;
+  // - Store all currencies in this service.
+  // - A better way of solving the nesting in currency.component.ts
+  // - Fix the binance implementation
+
+  constructor(private http: HttpClient) {}
+
+  getCurrencies(): Observable<PoolModel.Currency[]> {
+    // TODO: create request injector for module that defaults to the URL.
+    return this.http
+      .get<PoolModel.Currency[]>('http://localhost:3000/currencies')
+      .pipe(
+        tap(() => console.log('fetched currencies')),
+        catchError(this.handleError<any>('getCurrencies'))
+      );
   }
 
-  getCurrencyByName(name: string): PoolModel.Currency {
-    return this.currencies.find(
-      (i) => i.name.toLowerCase() === name.toLowerCase()
-    );
-  }
+  // Source: https://angular.io/tutorial/toh-pt6#final-code-review
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      // TODO: send the error to remote logging infrastructure
+      console.error(error); // log to console instead
 
-  constructor() {}
+      // TODO: better job of transforming error for user consumption
+      console.log(`${operation} failed: ${error.message}`);
+
+      // Let the app keep running by returning an empty result.
+      return of(result as T);
+    };
+  }
 }
