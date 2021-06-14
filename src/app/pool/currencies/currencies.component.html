@@ -1,48 +1,60 @@
 <div class="table-responsive-sm">
-  <table class="table borderless mb-0">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col"></th>
-        <th scope="col">Currency</th>
-        <th scope="col">Price</th>
-        <th scope="col">24h change</th>
-        <th scope="col"></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let currency of currencies; let i = index" class="table-row">
-        <td>
-          {{ i + 1 }}
-        </td>
+  <div *ngIf="!currencies.length; then thenBlock else elseBlock"></div>
 
-        <td class="text-center">
-          <img [ngClass]="currency.change <= 0 ? 'red' : 'green'" class="graph" src="{{ currency.graph }}" />
-        </td>
+  <ng-template #thenBlock>
+    <div class="text-center">
+      <div class="spinner-border spinner-big text-primary" role="status">
+        <span class="sr-only"></span>
+      </div>
+    </div>
+  </ng-template>
 
-        <td>
-          <img class="icon" src="{{ currency.icon }}" />
-          {{ currency.name }}
+  <ng-template #elseBlock>
+    <table class="table borderless mb-0">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col"></th>
+          <th scope="col">Currency</th>
+          <th scope="col">Price</th>
+          <th scope="col">24h change</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let currency of currencies; let i = index" class="table-row">
+          <td>
+            {{ i + 1 }}
+          </td>
 
-          <div class="tag">
-            {{ currency.ticker }}
-          </div>
-        </td>
+          <td class="text-center">
+            <img [ngClass]="currency.change <= 0 ? 'red' : 'green'" class="graph" src="{{ currency.graph }}" />
+          </td>
 
-        <td>{{ currency.price | currency: "EUR" }}</td>
-        <td [ngClass]="currency.change <= 0 ? 'red' : 'green'">
-          <div class='price-change'>
-            {{ currency.change > 0 ? '+' : null }}{{ currency.relative_change | percent }}
-          </div>
-          <div class="tag" [ngClass]="currency.change <= 0 ? 'red' : 'green'">
-            {{ currency.change > 0 ? '+' : null }}{{ currency.change | currency: "EUR" }}
-          </div>
-        </td>
-        <td class="right">
-          <button type="button" class="btn btn-outline-primary btn-sm"
-            (click)="currencyClicked(currency.name)">Trade</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+          <td>
+            <img class="icon" src="{{ currency.icon }}" />
+            {{ currency.name }}
+
+            <div class="tag">
+              {{ currency.ticker }}
+            </div>
+          </td>
+
+          <td>{{ currency.price | currency: "EUR" }}</td>
+          <td [ngClass]="currency.change <= 0 ? 'red' : 'green'">
+            <div class='price-change'>
+              {{ currency.change > 0 ? '+' : null }}{{ currency.relative_change | percent }}
+            </div>
+            <div class="tag" [ngClass]="currency.change <= 0 ? 'red' : 'green'">
+              {{ currency.change > 0 ? '+' : null }}{{ currency.change | currency: "EUR" }}
+            </div>
+          </td>
+          <td class="right">
+            <button type="button" class="btn btn-outline-primary btn-sm"
+              (click)="currencyClicked(currency.name)">Trade</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </ng-template>
 </div>

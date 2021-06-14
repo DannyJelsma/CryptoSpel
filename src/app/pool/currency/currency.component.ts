@@ -23,6 +23,7 @@ export class CurrencyComponent implements OnInit {
   chartOptions: Highcharts.Options;
   currency: PoolModel.Currency;
   dailyChange: number;
+  graphDataFetched: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -61,6 +62,8 @@ export class CurrencyComponent implements OnInit {
         this.http
           .get(`http://localhost:3000/history/${this.currency.ticker}EUR`)
           .subscribe((response: PoolModel.Coin) => {
+            this.graphDataFetched = true;
+
             const history = response.history.sort((first, second) => {
               return first.date - second.date;
             });

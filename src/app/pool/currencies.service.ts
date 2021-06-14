@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -13,11 +13,12 @@ export class CurrenciesService {
   // - Store all currencies in this service.
   // - A better way of solving the nesting in currency.component.ts
   // - Fix the binance implementation
+  // - How can we make every request automatically route to our API url
+  //   (interceptor demo)?
 
   constructor(private http: HttpClient) {}
 
   getCurrencies(): Observable<PoolModel.Currency[]> {
-    // TODO: create request injector for module that defaults to the URL.
     return this.http
       .get<PoolModel.Currency[]>('http://localhost:3000/currencies')
       .pipe(
