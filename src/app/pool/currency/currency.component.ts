@@ -6,6 +6,8 @@ import HC_stock from 'highcharts/modules/stock';
 import * as moment from 'moment';
 import { HttpClient } from '@angular/common/http';
 
+window.Highcharts = Highcharts;
+
 HC_stock(Highcharts);
 window.Highcharts = Highcharts;
 
@@ -59,7 +61,9 @@ export class CurrencyComponent implements OnInit {
         this.http
           .get(`http://localhost:3000/history/${this.currency.ticker}EUR`)
           .subscribe((response: PoolModel.Coin) => {
-            const history = response.history;
+            const history = response.history.sort((first, second) => {
+              return first.date - second.date;
+            });
             const data = history.map(({ date, price }) => [date, price]);
             this.chartOptions = {
               series: [
