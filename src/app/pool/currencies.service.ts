@@ -16,6 +16,8 @@ export class CurrenciesService {
   // - How can we make every request automatically route to our API url
   //   (interceptor demo)?
 
+  // currencies: PoolModel.Currency[] = [];
+
   constructor(private http: HttpClient) {}
 
   getCurrencies(): Observable<PoolModel.Currency[]> {
@@ -40,4 +42,6 @@ export class CurrenciesService {
       return of(result as T);
     };
   }
+
+  // https://medium.com/@ryanchenkie_40935/angular-authentication-using-the-http-client-and-http-interceptors-2f9d1540eb8
 }

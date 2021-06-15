@@ -6,7 +6,7 @@ import { CurrenciesComponent } from './currencies/currencies.component';
 import { CurrencyComponent } from './currency/currency.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HighchartsChartModule } from 'highcharts-angular';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
@@ -17,6 +17,12 @@ import { HttpClientModule } from '@angular/common/http';
     CurrencyComponent,
     DashboardComponent,
   ],
-  imports: [CommonModule, HighchartsChartModule, FormsModule, HttpClientModule],
+  imports: [
+    CommonModule,
+    HighchartsChartModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+  ],
 })
 export class PoolModule {}
