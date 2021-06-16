@@ -3,7 +3,6 @@ import { ActivatedRoute } from '@angular/router';
 import { CurrenciesService } from '../currencies.service';
 import * as Highcharts from 'highcharts';
 import HC_stock from 'highcharts/modules/stock';
-import * as moment from 'moment';
 import { HttpClient } from '@angular/common/http';
 
 window.Highcharts = Highcharts;
