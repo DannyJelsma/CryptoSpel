@@ -11,10 +11,10 @@ import { PoolModule } from './pool/pool.module';
 import { HighchartsChartModule } from 'highcharts-angular';
 import { SharedModule } from './_shared/shared.module';
 import { HeaderComponent } from './_layout/header/header.component';
-import {JwtModule} from '@auth0/angular-jwt';
+import { JwtModule } from '@auth0/angular-jwt';
 
 export function tokenGetter() {
-  return localStorage.getItem("token");
+  return localStorage.getItem('token');
 }
 
 @NgModule({
@@ -27,23 +27,23 @@ export function tokenGetter() {
   ],
   imports: [
     BrowserModule,
-    JwtModule.forRoot({
-      config: {
-        tokenGetter: tokenGetter,
-        allowedDomains: ["localhost:4200", "localhost:3000"],
-        disallowedRoutes: [
-          "http://localhost:4200/login/",
-          "http://localhost:4200/register/",
-          "http://localhost:3000/user/login",
-          "http://localhost:3000/user/register"
-        ],
-      },
-    }),
     AuthModule,
     AppRoutingModule,
     PoolModule,
     HighchartsChartModule,
     SharedModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        allowedDomains: ['localhost:4200', 'localhost:3000'],
+        disallowedRoutes: [
+          'http://localhost:4200/login/',
+          'http://localhost:4200/register/',
+          'http://localhost:3000/user/login',
+          'http://localhost:3000/user/register',
+        ],
+      },
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],

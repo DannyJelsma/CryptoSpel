@@ -40,13 +40,14 @@
             </div>
           </td>
 
-          <td>{{ currency.price | currency: "EUR" }}</td>
+          <td>{{ currency.price | currency: "EUR": 'symbol': '1.2-8' }}</td>
           <td [ngClass]="currency.change <= 0 ? 'red' : 'green'">
             <div class='price-change'>
               {{ currency.change > 0 ? '+' : null }}{{ currency.relative_change | percent }}
             </div>
             <div class="tag" [ngClass]="currency.change <= 0 ? 'red' : 'green'">
-              {{ currency.change > 0 ? '+' : null }}{{ currency.change | currency: "EUR" }}
+              {{ currency.change > 0 ? '+' : null }}{{ currency.change |
+              currency: "EUR" }}
             </div>
           </td>
           <td class="right">
