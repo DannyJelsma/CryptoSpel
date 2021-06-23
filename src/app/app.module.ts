@@ -12,6 +12,9 @@ import { HighchartsChartModule } from 'highcharts-angular';
 import { SharedModule } from './_shared/shared.module';
 import { HeaderComponent } from './_layout/header/header.component';
 import {JwtModule} from '@auth0/angular-jwt';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
+import { RouterModule } from '@angular/router';
 
 export function tokenGetter() {
   return localStorage.getItem("token");
@@ -26,7 +29,7 @@ export function tokenGetter() {
     HeaderComponent,
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
@@ -44,6 +47,13 @@ export function tokenGetter() {
     PoolModule,
     HighchartsChartModule,
     SharedModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the app is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    }),
+    RouterModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
