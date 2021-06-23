@@ -19,9 +19,7 @@ export class JoinComponent implements OnInit {
       let { id: pool } = params;
       this.http
         .post(`http://localhost:3000/pool/join/${pool}`, {})
-        .subscribe(() => {
-          this.router.navigate([`pool/${pool}/dashboard`]);
-        });
+        .subscribe(() => this.router.navigate([`pool/${pool}/dashboard`]));
     });
   }
 }

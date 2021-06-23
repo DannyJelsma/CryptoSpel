@@ -1,4 +1,24 @@
-<p>
-  home component should show all the joined pools (and maybe an option to create
-  a pool?)
-</p>
+<div class="pool-cards">
+  <div
+    *ngFor="let pool of pools"
+    class="card pool-card border"
+    routerLink="/pool/{{ pool._id }}/dashboard"
+  >
+    <div class="card-body">
+      <h5 class="card-title">{{ pool.name }}</h5>
+      <p class="card-text">Budget: {{ pool.budget | currency: "EUR" }}</p>
+    </div>
+    <div class="card-footer text-muted">
+      Ends in {{ pool.ends_in_days }} days
+    </div>
+  </div>
+
+  <div class="card pool-card create-pool border" routerLink="/pool/create">
+    <!-- <div class="card-body">
+      <h5 class="card-title">test</h5>
+      <p class="card-text">test</p>
+    </div> -->
+    <!-- <div class="card-footer text-muted">Eascasd</div> -->
+    Create Pool
+  </div>
+</div>

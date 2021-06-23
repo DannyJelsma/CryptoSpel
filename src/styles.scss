@@ -117,3 +117,7 @@ table {
     filter: hue-rotate(300deg) saturate(210%) brightness(0.7) contrast(170%);
   }
 }
+
+.table > :not(:last-child) > :last-child > * {
+  border-bottom-color: inherit !important;
+}

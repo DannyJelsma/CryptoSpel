@@ -21,4 +21,25 @@ declare namespace PoolModel {
     date: number;
     price: number;
   }
+
+  export interface Asset {
+    id: number;
+    name: string;
+    ticker: string;
+    native_amount: number; // amount in native currency
+    amount: number; // amount in euro
+    icon: string;
+  }
+}
+
+declare namespace UserModel {
+  export interface Pool {
+    _id: string;
+    name: string;
+    end_date: Date;
+    budget: number;
+
+    // Optional (computed) values
+    ends_in_days?: number;
+  }
 }

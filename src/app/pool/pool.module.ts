@@ -1,5 +1,6 @@
+import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, CurrencyPipe, DecimalPipe } from '@angular/common';
 import { CreateComponent } from './create/create.component';
 import { JoinComponent } from './join/join.component';
 import { CurrenciesComponent } from './currencies/currencies.component';
@@ -23,6 +24,8 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    RouterModule,
   ],
+  providers: [CurrencyPipe, DecimalPipe],
 })
 export class PoolModule {}

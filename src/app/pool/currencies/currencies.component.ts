@@ -17,7 +17,7 @@ export class CurrenciesComponent implements OnInit {
   ) {}
 
   getCurrencies(): void {
-    this.currenciesService.getCurrencies().subscribe((currencies) => {
+    this.currenciesService.getCurrencies().then((currencies) => {
       this.currencies = currencies.map((i) => {
         i.change = i.price - i.previous_price;
         i.relative_change = i.change / i.previous_price;

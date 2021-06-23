@@ -1,10 +1,15 @@
-<!-- <div class="alert alert-secondary" role="alert">
-  You can invite users to this pool via this link <strong>localhost:4200/pool/join/1</strong>
+<!-- <div class="alert alert-primary" role="alert">
+  You can invite players to this pool using the following link
+  <a class="alert-link">localhost:4200/pool/join/{{ pool_id }}</a
+  >.
 </div> -->
 
 <div class="table-responsive-sm">
   <h5>
     Portfolio
+    <small class="text-muted"
+      >~{{ totalPortfolioValue | currency: "EUR" }}</small
+    >
   </h5>
   <table class="table borderless">
     <thead>
@@ -12,22 +17,32 @@
         <th class="col-1">#</th>
         <th class="col-2">Asset</th>
         <th class="col-2">Amount</th>
-        <th class="col-2">Profit</th>
+        <th class="col-1">Value</th>
+        <th class="col-1"></th>
       </tr>
     </thead>
-    <tbody>
-      <tr>
+    <tbody *ngFor="let asset of assets">
+      <!-- only show assets we have own atleast €1 of -->
+      <tr *ngIf="asset.amount > 1">
+        <td>{{ asset.id + 1 }}</td>
         <td>
-          1
+          <!-- <img src="{{ asset.icon }}" style="height: 18px" class="icon" /> -->
+          {{ asset.name }}
         </td>
+        <td>{{ asset.native_amount | number: "1.0-8" }} {{ asset.ticker }}</td>
         <td>
-          Bitcoin
+          {{ asset.amount | currency: "EUR" }}
         </td>
-        <td>
-          0.3817271 BTC
-        </td>
-        <td>
-          {{ 231.32 | currency: 'EUR'}}
+        <td class="right">
+          <button
+            routerLink="/pool/{{ pool_id }}/currency/{{
+              asset.name.toLowerCase()
+            }}"
+            type="button"
+            class="btn btn-outline-primary btn-sm"
+          >
+            Trade
+          </button>
         </td>
       </tr>
     </tbody>
@@ -35,9 +50,7 @@
 </div>
 
 <div class="table-responsive-sm mt-3">
-  <h5>
-    Leaderboard
-  </h5>
+  <h5>Leaderboard</h5>
   <table class="table borderless mb-0">
     <thead>
       <tr>
@@ -49,17 +62,13 @@
     </thead>
     <tbody>
       <tr>
+        <td>1</td>
+        <td>SampleUser</td>
         <td>
-          1
+          {{ 53872.32 | currency: "EUR" }}
         </td>
         <td>
-          SampleUser
-        </td>
-        <td>
-          {{ 53872.32 | currency: 'EUR'}}
-        </td>
-        <td>
-          {{ 9872.32 | currency: 'EUR'}}
+          {{ 9872.32 | currency: "EUR" }}
         </td>
       </tr>
     </tbody>

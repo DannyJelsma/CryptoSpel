@@ -4,6 +4,7 @@ import { CurrenciesService } from '../currencies.service';
 import * as Highcharts from 'highcharts';
 import HC_stock from 'highcharts/modules/stock';
 import { HttpClient } from '@angular/common/http';
+import { CurrencyPipe, DecimalPipe } from '@angular/common';
 
 window.Highcharts = Highcharts;
 
@@ -16,6 +17,7 @@ window.Highcharts = Highcharts;
   styleUrls: ['./currency.component.scss'],
 })
 export class CurrencyComponent implements OnInit {
+  pool_id: string;
   amountToTransact: number = 0.0;
   sidebarContent: string = 'buy';
   Highcharts: typeof Highcharts = Highcharts;
@@ -27,7 +29,9 @@ export class CurrencyComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private currenciesService: CurrenciesService,
-    private http: HttpClient
+    private http: HttpClient,
+    private currencyPipe: CurrencyPipe,
+    private decimalPipe: DecimalPipe
   ) {}
 
   onAmountChange(event) {
@@ -36,23 +40,70 @@ export class CurrencyComponent implements OnInit {
 
   switchSidebarContent(switchTo: string) {
     this.sidebarContent = switchTo;
+
+    // reset amountToTransact
+    this.amountToTransact = 0;
   }
 
   doTransaction(type: string) {
     if (type === 'buy') {
-      confirm('u spend ' + this.amountToTransact + '?');
+      const amountInCurrency = this.amountToTransact / this.currency.price;
+      const confirmed = confirm(
+        `Are you sure you would like to purchase ${this.currencyPipe.transform(
+          this.amountToTransact,
+          'EUR'
+        )} worth of ${
+          this.currency.name
+        }? You will receive about ${this.decimalPipe.transform(
+          amountInCurrency,
+          '1.2-8'
+        )} ${this.currency.ticker}.`
+      );
+
+      if (!confirmed) return;
+
+      // make purchase
+      this.http
+        .post('http://localhost:3000/pool/buy', {
+          amount: amountInCurrency,
+          pool: this.pool_id,
+          ticker: this.currency.ticker,
+        })
+        .subscribe((response) => console.log);
     } else if (type === 'sell') {
-      confirm('u about to get ' + this.amountToTransact);
+      const confirmed = confirm(
+        `Are you sure you would like to sell ${this.decimalPipe.transform(
+          this.amountToTransact,
+          '1.2-8'
+        )} ${this.currency.ticker}?`
+      );
+
+      if (!confirmed) return;
+
+      // sell
+      this.http
+        .post('http://localhost:3000/pool/sell', {
+          amount: this.amountToTransact,
+          pool: this.pool_id,
+          ticker: this.currency.ticker,
+        })
+        .subscribe((response) => console.log);
     }
   }
 
   ngOnInit(): void {
+    // find pool_id
+    this.route.parent.params.subscribe((params) => {
+      let { id: pool } = params;
+      this.pool_id = pool;
+    });
+
     // TODO: change
     this.route.params.subscribe((params) => {
       let { name } = params;
 
       // nesting :/
-      this.currenciesService.getCurrencies().subscribe((currencies) => {
+      this.currenciesService.getCurrencies().then((currencies) => {
         this.currency = currencies.find(
           (i) => i.name.toLowerCase() === name.toLowerCase()
         );

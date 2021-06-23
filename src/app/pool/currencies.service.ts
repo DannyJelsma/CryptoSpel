@@ -7,26 +7,35 @@ import { catchError, tap } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class CurrenciesService {
-  // ! is there a way we can just store all the currencies in this service, some
-  // ! sort of singleton?
-
-  // - Store all currencies in this service.
-  // - A better way of solving the nesting in currency.component.ts
-  // - Fix the binance implementation
-  // - How can we make every request automatically route to our API url
-  //   (interceptor demo)?
-
-  // currencies: PoolModel.Currency[] = [];
+  currencies: PoolModel.Currency[] = [];
 
   constructor(private http: HttpClient) {}
 
-  getCurrencies(): Observable<PoolModel.Currency[]> {
+  fetchCurrencies(): Observable<PoolModel.Currency[]> {
     return this.http
       .get<PoolModel.Currency[]>('http://localhost:3000/currencies')
       .pipe(
         tap(() => console.log('fetched currencies')),
         catchError(this.handleError<any>('getCurrencies'))
       );
+  }
+
+  getCurrencies(): Promise<PoolModel.Currency[]> {
+    return new Promise((resolve) => {
+      if (this.currencies.length) {
+        resolve(this.currencies);
+      } else {
+        this.fetchCurrencies().subscribe((currencies) => {
+          this.currencies = currencies;
+          resolve(this.currencies);
+        });
+      }
+    });
+  }
+
+  async getCurrencyByTicker(ticker) {
+    const currencies = await this.getCurrencies();
+    return currencies.find((i) => i.ticker === ticker);
   }
 
   // Source: https://angular.io/tutorial/toh-pt6#final-code-review
