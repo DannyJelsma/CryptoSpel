@@ -1,3 +1,4 @@
+import { JoinComponent } from './pool/join/join.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -31,6 +32,7 @@ const routes: Routes = [
     path: 'pool/:id',
     component: AppLayoutComponent,
     children: [
+      { path: 'join', component: JoinComponent },
       { path: 'currencies', component: CurrenciesComponent },
       { path: 'currency/:name', component: CurrencyComponent },
       { path: 'dashboard', component: DashboardComponent },
