@@ -2,6 +2,35 @@
 
 <main class="container">
   <div class="card card-shadow">
+    <div class="nav-wrapper" *ngIf="pool_id && hasLoaded">
+      <ul class="nav nav-tabs">
+        <ul class="nav nav-pills">
+          <li class="user-balance nav-item">
+            <a class="nav-link disabled">{{
+              user.balance | currency: "EUR"
+            }}</a>
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              [routerLink]="['./dashboard']"
+              routerLinkActive="active"
+              aria-current="page"
+              href="#"
+              >Dashboard</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              routerLinkActive="active"
+              [routerLink]="['./currencies']"
+              >Currencies</a
+            >
+          </li>
+        </ul>
+      </ul>
+    </div>
     <div class="card-body p-4">
       <!-- <nav aria-label="breadcrumb">
         <ol class="breadcrumb">

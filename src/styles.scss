@@ -121,3 +121,7 @@ table {
 .table > :not(:last-child) > :last-child > * {
   border-bottom-color: inherit !important;
 }
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  background: #092A4C;
+}

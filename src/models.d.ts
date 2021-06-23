@@ -30,6 +30,10 @@ declare namespace PoolModel {
     amount: number; // amount in euro
     icon: string;
   }
+
+  export interface UserData {
+    balance: number;
+  }
 }
 
 declare namespace UserModel {

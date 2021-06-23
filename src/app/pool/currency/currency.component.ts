@@ -1,3 +1,4 @@
+import { UserService } from './../user.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CurrenciesService } from '../currencies.service';
@@ -31,7 +32,8 @@ export class CurrencyComponent implements OnInit {
     private currenciesService: CurrenciesService,
     private http: HttpClient,
     private currencyPipe: CurrencyPipe,
-    private decimalPipe: DecimalPipe
+    private decimalPipe: DecimalPipe,
+    private userService: UserService
   ) {}
 
   onAmountChange(event) {
@@ -69,7 +71,10 @@ export class CurrencyComponent implements OnInit {
           pool: this.pool_id,
           ticker: this.currency.ticker,
         })
-        .subscribe((response) => console.log);
+        .subscribe(({ balance_spent }: any) => {
+          // remove from balance
+          this.userService.addBalance(this.pool_id, -balance_spent);
+        });
     } else if (type === 'sell') {
       const confirmed = confirm(
         `Are you sure you would like to sell ${this.decimalPipe.transform(
@@ -87,7 +92,10 @@ export class CurrencyComponent implements OnInit {
           pool: this.pool_id,
           ticker: this.currency.ticker,
         })
-        .subscribe((response) => console.log);
+        .subscribe(({ balance_received }: any) => {
+          // add to balance
+          this.userService.addBalance(this.pool_id, balance_received);
+        });
     }
   }
 

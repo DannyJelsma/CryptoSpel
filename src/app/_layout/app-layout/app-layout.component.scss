@@ -1,0 +1,27 @@
+.nav-tabs {
+  border-bottom: none;
+}
+
+.nav-item {
+  margin: 0px 6px;
+}
+
+.nav-wrapper {
+  // border-bottom: 1px solid #DEE2E6;
+  background: rgba(0,0,0,0.05);
+  padding: 14px 0px;
+}
+
+.user-balance {
+  border-right: 1px solid #DEE2E6;
+  margin-right: 16px;
+  font-size: 17px;
+
+  // &:nav-link {
+  //   color: black;
+  // }
+}
+
+a.nav-link {
+  color: #092A4C;
+}

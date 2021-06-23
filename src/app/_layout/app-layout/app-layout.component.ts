@@ -1,3 +1,4 @@
+import { UserService } from './../../pool/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
@@ -11,21 +12,35 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app-layout.component.scss'],
 })
 export class AppLayoutComponent implements OnInit {
-  // breadcrumbs: Breadcrumb[] = [];
+  hasLoaded = false;
+  pool_id: string;
+  user: PoolModel.UserData;
 
-  constructor(private router: Router) {}
+  constructor(
+    private route: ActivatedRoute,
+    private userService: UserService
+  ) {}
 
-  // Home / Dashboard / Currency / Bitcoin
+  getPoolData(): void {
+    this.userService
+      .getPoolData(this.pool_id)
+      .then((user) => {
+        this.user = user;
+        this.hasLoaded = true;
+      })
+      .catch(console.error);
+  }
 
   ngOnInit(): void {
-    // this.breadcrumbs = this.router.url
-    //   .split('/')
-    //   .slice(3)
-    //   .map((i) => {
-    //     i = i.charAt(0).toUpperCase() + i.slice(1, i.length);
-    //     return {
-    //       name: i,
-    //     };
-    //   });
+    // set pool_id if available
+    this.route.params.subscribe((params) => {
+      let { id: pool } = params;
+      this.pool_id = pool;
+    });
+
+    if (this.pool_id) {
+      // retrieve user information from service
+      this.getPoolData();
+    }
   }
 }
