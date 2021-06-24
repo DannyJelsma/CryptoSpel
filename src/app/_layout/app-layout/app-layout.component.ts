@@ -1,6 +1,6 @@
 import { UserService } from './../../pool/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit } from '@angular/core';
 
 // interface Breadcrumb {
 //   name: string;
@@ -11,14 +11,15 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './app-layout.component.html',
   styleUrls: ['./app-layout.component.scss'],
 })
-export class AppLayoutComponent implements OnInit {
+export class AppLayoutComponent implements OnInit, AfterViewInit {
   hasLoaded = false;
   pool_id: string;
   user: PoolModel.UserData;
 
   constructor(
     private route: ActivatedRoute,
-    private userService: UserService
+    private userService: UserService,
+    private elementRef: ElementRef
   ) {}
 
   getPoolData(): void {
@@ -42,5 +43,9 @@ export class AppLayoutComponent implements OnInit {
       // retrieve user information from service
       this.getPoolData();
     }
+  }
+
+  ngAfterViewInit(): void {
+    this.elementRef.nativeElement.ownerDocument.body.className = 'bg-white'; // gradient
   }
 }
