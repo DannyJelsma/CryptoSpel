@@ -39,6 +39,12 @@ export class CurrencyComponent implements OnInit {
 
   onAmountChange(event) {
     this.amountToTransact = event.target.value;
+
+    this.http
+      .get(`${environment.backendUrl}/history/${this.currency.ticker}EUR`)
+      .subscribe((response: PoolModel.Coin) => {
+        this.currency.price = response.history[response.history.length - 1].price;
+      });
   }
 
   switchSidebarContent(switchTo: string) {
@@ -49,6 +55,12 @@ export class CurrencyComponent implements OnInit {
   }
 
   doTransaction(type: string) {
+    this.http
+      .get(`${environment.backendUrl}/history/${this.currency.ticker}EUR`)
+      .subscribe((response: PoolModel.Coin) => {
+        this.currency.price = response.history[response.history.length - 1].price;
+      });
+
     if (type === 'buy') {
       const amountInCurrency = this.amountToTransact / this.currency.price;
       const confirmed = confirm(
@@ -72,7 +84,7 @@ export class CurrencyComponent implements OnInit {
           pool: this.pool_id,
           ticker: this.currency.ticker,
         })
-        .subscribe(({ balance_spent }: any) => {
+        .subscribe(({balance_spent}: any) => {
           // remove from balance
           this.userService.addBalance(this.pool_id, -balance_spent);
         });
@@ -93,7 +105,7 @@ export class CurrencyComponent implements OnInit {
           pool: this.pool_id,
           ticker: this.currency.ticker,
         })
-        .subscribe(({ balance_received }: any) => {
+        .subscribe(({balance_received}: any) => {
           // add to balance
           this.userService.addBalance(this.pool_id, balance_received);
         });
@@ -101,6 +113,14 @@ export class CurrencyComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    setInterval(() => {
+      this.http
+        .get(`${environment.backendUrl}/history/${this.currency.ticker}EUR`)
+        .subscribe((response: PoolModel.Coin) => {
+          this.currency.price = response.history[response.history.length - 1].price;
+        });
+    }, 60000);
+
     // find pool_id
     this.route.parent.params.subscribe((params) => {
       let { id: pool } = params;
