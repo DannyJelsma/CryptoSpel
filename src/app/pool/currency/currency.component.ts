@@ -6,7 +6,7 @@ import * as Highcharts from 'highcharts';
 import HC_stock from 'highcharts/modules/stock';
 import { HttpClient } from '@angular/common/http';
 import { CurrencyPipe, DecimalPipe } from '@angular/common';
-import {environment} from '@environment';
+import { environment } from '@environment';
 
 window.Highcharts = Highcharts;
 
@@ -44,7 +44,8 @@ export class CurrencyComponent implements OnInit {
     this.http
       .get(`${environment.backendUrl}/history/${this.currency.ticker}EUR`)
       .subscribe((response: PoolModel.Coin) => {
-        this.currency.price = response.history[response.history.length - 1].price;
+        this.currency.price =
+          response.history[response.history.length - 1].price;
       });
   }
 
@@ -56,14 +57,16 @@ export class CurrencyComponent implements OnInit {
   }
 
   redirectDashboard() {
-    this.router.navigate([`pool/${this.pool_id}/dashboard`]);
+    // forcefully refresh to update balance
+    window.location.href = `/pool/${this.pool_id}/dashboard`;
   }
 
   doTransaction(type: string) {
     this.http
       .get(`${environment.backendUrl}/history/${this.currency.ticker}EUR`)
       .subscribe((response: PoolModel.Coin) => {
-        this.currency.price = response.history[response.history.length - 1].price;
+        this.currency.price =
+          response.history[response.history.length - 1].price;
       });
 
     if (type === 'buy') {
@@ -89,7 +92,7 @@ export class CurrencyComponent implements OnInit {
           pool: this.pool_id,
           ticker: this.currency.ticker,
         })
-        .subscribe(({balance_spent}: any) => {
+        .subscribe(({ balance_spent }: any) => {
           // remove from balance
           this.userService.addBalance(this.pool_id, -balance_spent);
           this.redirectDashboard();
@@ -111,7 +114,7 @@ export class CurrencyComponent implements OnInit {
           pool: this.pool_id,
           ticker: this.currency.ticker,
         })
-        .subscribe(({balance_received}: any) => {
+        .subscribe(({ balance_received }: any) => {
           // add to balance
           this.userService.addBalance(this.pool_id, balance_received);
           this.redirectDashboard();
@@ -124,7 +127,8 @@ export class CurrencyComponent implements OnInit {
       this.http
         .get(`${environment.backendUrl}/history/${this.currency.ticker}EUR`)
         .subscribe((response: PoolModel.Coin) => {
-          this.currency.price = response.history[response.history.length - 1].price;
+          this.currency.price =
+            response.history[response.history.length - 1].price;
         });
     }, 60000);
 

@@ -1,24 +1,25 @@
 <nav class="navbar mb-2 navbar-dark navbar-expand" [class]="innerClass">
   <div class="container">
     <a href="/" class="navbar-brand p-0">
-      <img src="assets/img/angular_logo_text.png" alt="Angular logo" height="50" class="pr-2">
+      <img
+        src="assets/img/angular_logo_text.png"
+        alt="Angular logo"
+        height="50"
+        class="pr-2"
+      />
     </a>
 
     <ul class="navbar-nav me-1">
-      <li class="nav-item" *ngIf="isAuthenticated()">
+      <!-- <li class="nav-item" *ngIf="isAuthenticated()">
         <a href="pool/create" target="_self" class="nav-link">
           Create pool
         </a>
+      </li> -->
+      <li class="nav-item" *ngIf="!isAuthenticated()">
+        <a href="login" target="_self" class="nav-link"> Login </a>
       </li>
       <li class="nav-item" *ngIf="!isAuthenticated()">
-        <a href="login" target="_self" class="nav-link">
-          Login
-        </a>
-      </li>
-      <li class="nav-item" *ngIf="!isAuthenticated()">
-        <a href="register" target="_self" class="nav-link">
-          Register
-        </a>
+        <a href="register" target="_self" class="nav-link"> Register </a>
       </li>
       <li class="nav-item" *ngIf="isAuthenticated()">
         <a href="#" target="_self" class="nav-link" (click)="logout()">
