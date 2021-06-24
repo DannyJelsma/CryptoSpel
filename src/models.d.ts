@@ -32,7 +32,16 @@ declare namespace PoolModel {
   }
 
   export interface UserData {
+    username: string;
     balance: number;
+  }
+
+  export interface Leaderboard {
+    position: number;
+    username: string;
+    assets: number;
+    balance: number;
+    total: number;
   }
 }
 

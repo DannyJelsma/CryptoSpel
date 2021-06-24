@@ -1,6 +1,6 @@
 import { UserService } from './../user.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CurrenciesService } from '../currencies.service';
 import * as Highcharts from 'highcharts';
 import HC_stock from 'highcharts/modules/stock';
@@ -29,6 +29,7 @@ export class CurrencyComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private currenciesService: CurrenciesService,
     private http: HttpClient,
     private currencyPipe: CurrencyPipe,
@@ -45,6 +46,10 @@ export class CurrencyComponent implements OnInit {
 
     // reset amountToTransact
     this.amountToTransact = 0;
+  }
+
+  redirectDashboard() {
+    this.router.navigate([`pool/${this.pool_id}/dashboard`]);
   }
 
   doTransaction(type: string) {
@@ -74,6 +79,7 @@ export class CurrencyComponent implements OnInit {
         .subscribe(({ balance_spent }: any) => {
           // remove from balance
           this.userService.addBalance(this.pool_id, -balance_spent);
+          this.redirectDashboard();
         });
     } else if (type === 'sell') {
       const confirmed = confirm(
@@ -95,6 +101,7 @@ export class CurrencyComponent implements OnInit {
         .subscribe(({ balance_received }: any) => {
           // add to balance
           this.userService.addBalance(this.pool_id, balance_received);
+          this.redirectDashboard();
         });
     }
   }

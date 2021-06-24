@@ -6,7 +6,7 @@
   >
     <div class="card-body">
       <h5 class="card-title">{{ pool.name }}</h5>
-      <p class="card-text">Budget: {{ pool.budget | currency: "EUR" }}</p>
+      <p class="card-text">{{ pool.budget | currency: "EUR" }}</p>
     </div>
     <div class="card-footer text-muted">
       Ends in {{ pool.ends_in_days }} days

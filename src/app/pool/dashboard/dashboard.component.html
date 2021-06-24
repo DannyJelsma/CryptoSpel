@@ -8,7 +8,7 @@
   <h5>
     Portfolio
     <small class="text-muted"
-      >~{{ totalPortfolioValue | currency: "EUR" }}</small
+      >- {{ totalPortfolioValue | currency: "EUR" }}</small
     >
   </h5>
   <table class="table borderless">
@@ -50,25 +50,31 @@
 </div>
 
 <div class="table-responsive-sm mt-3">
-  <h5>Leaderboard</h5>
+  <h5>
+    Leaderboard <small class="text-muted">- #{{ leaderboardPosition }}</small>
+  </h5>
   <table class="table borderless mb-0">
     <thead>
       <tr>
         <th class="col-1">#</th>
         <th class="col-2">Username</th>
-        <th class="col-2">Value</th>
-        <th class="col-2">Profit</th>
+        <th class="col-2">Assets</th>
+        <th class="col-1">Balance</th>
+        <th class="col-1" style="text-align: right">Total</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody *ngFor="let row of leaderboard">
       <tr>
-        <td>1</td>
-        <td>SampleUser</td>
+        <td>{{ row.position }}</td>
+        <td>{{ row.username }}</td>
         <td>
-          {{ 53872.32 | currency: "EUR" }}
+          {{ row.assets | currency: "EUR" }}
         </td>
         <td>
-          {{ 9872.32 | currency: "EUR" }}
+          {{ row.balance | currency: "EUR" }}
+        </td>
+        <td class="right">
+          {{ row.total | currency: "EUR" }}
         </td>
       </tr>
     </tbody>

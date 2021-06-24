@@ -1,3 +1,4 @@
+import { UserService } from './../user.service';
 import { CurrenciesService } from './../currencies.service';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
@@ -9,6 +10,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
+  leaderboard: PoolModel.Leaderboard[] = [];
+  leaderboardPosition: number;
   assets: PoolModel.Asset[] = [];
   totalPortfolioValue: number;
   pool_id: string;
@@ -16,7 +19,8 @@ export class DashboardComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private http: HttpClient,
-    private currenciesService: CurrenciesService
+    private currenciesService: CurrenciesService,
+    private userService: UserService
   ) {}
 
   ngOnInit(): void {
@@ -56,5 +60,22 @@ export class DashboardComponent implements OnInit {
           console.error(err);
         }
       });
+
+    // fetch leaderboard
+    this.userService
+      .getPoolData(this.pool_id)
+      .then((userData: PoolModel.UserData) => {
+        this.http
+          .get(`http://localhost:3000/pool/leaderboard/${this.pool_id}`)
+          .subscribe(async (leaderboard: PoolModel.Leaderboard[]) => {
+            this.leaderboard = leaderboard.map((i, index) => {
+              i.position = index + 1;
+              if (userData.username === i.username)
+                this.leaderboardPosition = i.position;
+              return i;
+            });
+          });
+      })
+      .catch(console.error);
   }
 }
