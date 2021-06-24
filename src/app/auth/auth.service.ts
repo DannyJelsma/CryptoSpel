@@ -3,7 +3,9 @@ import { UserModel } from '../_models/user';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import {environment} from '@environment';
+// @ts-ignore
+import { environment } from '@environment';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 const API_URL = environment.backendUrl + '/user/';
 
@@ -14,7 +16,8 @@ export class AuthService {
   public storedUser: BehaviorSubject<UserModel> = new BehaviorSubject(null);
 
   constructor(
-    private http: HttpClient // private storage: Storage,
+    private http: HttpClient,
+    private jwtHelper: JwtHelperService
   ) {
     // this.storage.get('user').then((user) => {
     //   this.storedUser.next(user);
@@ -92,7 +95,14 @@ export class AuthService {
 
   public logout(): void {
     this.storedUser.next(null);
-    // this.storage.remove('token');
-    localStorage.remove('token');
+    localStorage.removeItem('token');
+  }
+
+  public isAuthenticated(): boolean {
+    const token = localStorage.getItem('token');
+    // console.log(this.jwtHelper.isTokenExpired(token));
+    // return false;
+    // return token ? !this.jwtHelper.isTokenExpired(token) : false;
+    return !this.jwtHelper.isTokenExpired(token);
   }
 }

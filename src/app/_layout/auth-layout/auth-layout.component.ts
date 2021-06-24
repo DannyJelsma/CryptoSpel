@@ -9,13 +9,10 @@ export class AuthLayoutComponent implements OnInit, AfterViewInit {
 
   constructor(private elementRef: ElementRef) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
-  ngAfterViewInit() {
-    // this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = 'var(--bs-secondary)';
+  ngAfterViewInit(): void {
     this.elementRef.nativeElement.ownerDocument.body.className = 'bg-secondary'; // gradient
-
   }
 
 }

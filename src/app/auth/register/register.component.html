@@ -31,7 +31,7 @@
 
         <form>
           <div class="mb-3"><div class="form-label-group floating-label-group mb-3">
-            <input id="username" name="username" type="text" placeholder="Username" autofocus="autofocus" required="required" class="form-control">
+            <input id="username" [(ngModel)]="user.username" name="username" type="text" placeholder="Username" autofocus="autofocus" required="required" class="form-control">
             <label for="username">Username</label>
           </div>
             <div class="mb-3 invalid-feedback">
@@ -41,22 +41,22 @@
 
           <div class="mb-3">
             <div class="form-label-group floating-label-group mb-3">
-              <input id="email" name="email" type="email" placeholder="E-mail Address" autofocus="autofocus" class="form-control">
+              <input id="email" [(ngModel)]="user.email" name="email" type="email" placeholder="E-mail Address" autofocus="autofocus" class="form-control">
               <label for="email">E-mail Address</label>
             </div>
             <div class="mb-3 invalid-feedback">
-          </div>
+            </div>
 
           </div>
           <div class="mb-3">
             <div class="form-label-group floating-label-group mb-3">
-              <input id="password" name="password" type="password" placeholder="Wachtwoord" autofocus="autofocus" class="form-control">
+              <input id="password" [(ngModel)]="user.password" name="password" type="password" placeholder="Wachtwoord" autofocus="autofocus" class="form-control">
               <label for="password">Wachtwoord</label>
             </div>
           </div>
 
           <div class="d-flex justify-content-center">
-            <button type="submit" class="btn px-5 border-0 btn-primary rounded-pill">
+            <button type="submit" class="btn px-5 border-0 btn-primary rounded-pill" (click)="register()">
               Register
             </button>
           </div>
