@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
+import {environment} from '@environment';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +14,7 @@ export class CurrenciesService {
 
   fetchCurrencies(): Observable<PoolModel.Currency[]> {
     return this.http
-      .get<PoolModel.Currency[]>('http://localhost:3000/currencies')
+      .get<PoolModel.Currency[]>(environment.backendUrl + '/currencies')
       .pipe(
         tap(() => console.log('fetched currencies')),
         catchError(this.handleError<any>('getCurrencies'))

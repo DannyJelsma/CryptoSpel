@@ -2,6 +2,7 @@ import { CurrenciesService } from './../currencies.service';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import {environment} from '@environment';
 
 @Component({
   selector: 'app-dashboard',
@@ -27,7 +28,7 @@ export class DashboardComponent implements OnInit {
 
     // fetch portfolio
     this.http
-      .get(`http://localhost:3000/pool/assets/${this.pool_id}`)
+      .get(`${environment.backendUrl}/pool/assets/${this.pool_id}`)
       .subscribe(async (response: any) => {
         try {
           for (let i = 0; i < response.length; i++) {

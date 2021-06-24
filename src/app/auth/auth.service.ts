@@ -3,8 +3,9 @@ import { UserModel } from '../_models/user';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import {environment} from '@environment';
 
-const API_URL = 'http://localhost:3000/user/';
+const API_URL = environment.backendUrl + '/user/';
 
 @Injectable({
   providedIn: 'root',
