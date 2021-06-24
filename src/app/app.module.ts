@@ -13,7 +13,7 @@ import { SharedModule } from './_shared/shared.module';
 import { HeaderComponent } from './_layout/header/header.component';
 import {JwtModule} from '@auth0/angular-jwt';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { environment } from '../environments/environment';
+import { environment } from '@environment';
 import { RouterModule } from '@angular/router';
 
 export function tokenGetter() {
@@ -33,12 +33,10 @@ export function tokenGetter() {
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
-        allowedDomains: ["localhost:4200", "localhost:3000"],
+        allowedDomains: [environment.backendUrl.replace('https://', '').replace('http://', '')],
         disallowedRoutes: [
-          "http://localhost:4200/login/",
-          "http://localhost:4200/register/",
-          "http://localhost:3000/user/login",
-          "http://localhost:3000/user/register"
+          environment.backendUrl + "/user/login",
+          environment.backendUrl + "/user/register"
         ],
       },
     }),

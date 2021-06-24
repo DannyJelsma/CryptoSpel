@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import {environment} from '@environment';
 
 @Component({
   selector: 'app-create',
@@ -32,7 +33,7 @@ export class CreateComponent implements OnInit {
       end_date,
     });
     this.http
-      .post(`http://localhost:3000/pool/create`, {
+      .post(`${environment.backendUrl}/pool/create`, {
         name,
         budget,
         end_date,

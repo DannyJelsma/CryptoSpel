@@ -16,6 +16,9 @@
       "es2018",
       "dom"
     ],
+    "paths": {
+      "@environment": ["./src/environments/environment.ts"]
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

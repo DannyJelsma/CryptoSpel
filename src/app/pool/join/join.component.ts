@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import {environment} from '@environment';
 
 @Component({
   selector: 'app-join',
@@ -18,7 +19,7 @@ export class JoinComponent implements OnInit {
     this.route.parent.params.subscribe((params) => {
       let { id: pool } = params;
       this.http
-        .post(`http://localhost:3000/pool/join/${pool}`, {})
+        .post(`${environment.backendUrl}/pool/join/${pool}`, {})
         .subscribe(() => this.router.navigate([`pool/${pool}/dashboard`]));
     });
   }

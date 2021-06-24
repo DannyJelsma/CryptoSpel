@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import {environment} from '@environment';
 
 interface PoolData {
   [key: string]: PoolModel.UserData;
@@ -20,7 +21,7 @@ export class UserService {
         resolve(this.poolData[pool_id]);
       } else {
         this.http
-          .get(`http://localhost:3000/pool/user/${pool_id}`)
+          .get(`${environment.backendUrl}/pool/user/${pool_id}`)
           .subscribe(async (response: PoolModel.UserData) => {
             this.poolData[pool_id] = response;
             resolve(response);

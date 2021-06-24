@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import {environment} from '@environment';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +14,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.http
-      .get(`http://localhost:3000/pool/list`, {})
+      .get(`${environment.backendUrl}/pool/list`, {})
       .subscribe(({ pools: foundPools }: any) => {
         this.pools = foundPools.map((i: UserModel.Pool) => {
           const dateNow = new Date().getTime();

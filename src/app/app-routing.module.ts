@@ -15,6 +15,8 @@ import { CurrencyComponent } from './pool/currency/currency.component';
 import { CreateComponent } from './pool/create/create.component';
 import { DashboardComponent } from './pool/dashboard/dashboard.component';
 
+import { AuthGuardService as AuthGuard } from './auth/auth-guard.service';
+
 const routes: Routes = [
   // App routes
   {
@@ -22,7 +24,7 @@ const routes: Routes = [
     component: AppLayoutComponent,
     children: [
       { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'pool/create', component: CreateComponent },
+      { path: 'pool/create', component: CreateComponent, canActivate: [AuthGuard] },
       // { path: 'profile', component: ProfileComponent }
     ],
   },
