@@ -23,7 +23,7 @@ const routes: Routes = [
     path: '',
     component: AppLayoutComponent,
     children: [
-      { path: '', component: HomeComponent, pathMatch: 'full' },
+      { path: '', component: HomeComponent, pathMatch: 'full', canActivate: [AuthGuard] },
       { path: 'pool/create', component: CreateComponent, canActivate: [AuthGuard] },
       // { path: 'profile', component: ProfileComponent }
     ],

@@ -67,7 +67,7 @@ export class DashboardComponent implements OnInit {
       .getPoolData(this.pool_id)
       .then((userData: PoolModel.UserData) => {
         this.http
-          .get(`http://localhost:3000/pool/leaderboard/${this.pool_id}`)
+          .get(`${environment.backendUrl}/pool/leaderboard/${this.pool_id}`)
           .subscribe(async (leaderboard: PoolModel.Leaderboard[]) => {
             this.leaderboard = leaderboard.map((i, index) => {
               i.position = index + 1;
