@@ -15,4 +15,8 @@ export class AuthGuardService {
     }
     return true;
   }
+
+  canActivateChild(): boolean {
+    return this.canActivate();
+  }
 }

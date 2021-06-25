@@ -33,6 +33,8 @@ const routes: Routes = [
   {
     path: 'pool/:id',
     component: AppLayoutComponent,
+    canActivate: [AuthGuard],
+    canActivateChild: [AuthGuard],
     children: [
       { path: 'join', component: JoinComponent },
       { path: 'currencies', component: CurrenciesComponent },
