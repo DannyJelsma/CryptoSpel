@@ -123,15 +123,15 @@ export class CurrencyComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    setInterval(() => {
-      this.http
-        .get(`${environment.backendUrl}/history/${this.currency.ticker}EUR`)
-        .subscribe((response: PoolModel.Coin) => {
-          this.currency.price =
-            response.history[response.history.length - 1].price;
-        });
-    }, 60000);
+    this.refreshData();
 
+    setInterval(() => {
+      this.refreshData();
+    }, 60000);
+  }
+
+  refreshData() {
+    console.log("refresh");
     // find pool_id
     this.route.parent.params.subscribe((params) => {
       let { id: pool } = params;
@@ -147,6 +147,14 @@ export class CurrencyComponent implements OnInit {
         this.currency = currencies.find(
           (i) => i.name.toLowerCase() === name.toLowerCase()
         );
+
+        this.http
+          .get(`${environment.backendUrl}/history/${this.currency.ticker}EUR`)
+          .subscribe((response: PoolModel.Coin) => {
+            this.currency.price =
+              response.history[response.history.length - 1].price;
+          });
+
         this.dailyChange = this.currency.price - this.currency.previous_price;
 
         this.http
@@ -184,20 +192,5 @@ export class CurrencyComponent implements OnInit {
           });
       });
     });
-
-    // TODO: convert to realtime data
-    // generate some sample chart information
-    // let data = [];
-    // let currentPrice = this.currency.price;
-
-    // for (let i = 0; i < 3 * 365; i++) {
-    //   const date = moment().subtract(i, 'days').valueOf();
-    //   const max = Math.ceil(0.15 * currentPrice);
-    //   const min = Math.floor(-0.15 * currentPrice);
-    //   currentPrice += Math.floor(Math.random() * (max - min + 1) + min);
-    //   data.push([date, currentPrice]);
-    // }
-
-    // data = data.reverse();
   }
 }

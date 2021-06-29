@@ -30,7 +30,8 @@
   "dataGroups": [{
     "name": "api-staleWhileRevalidate",
     "urls": [
-      "http://localhost:3000/**"
+      "http://localhost:3000/**",
+      "https://api.dannyjelsma.nl/**"
     ],
     "cacheConfig": {
       "maxSize": 1000,

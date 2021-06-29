@@ -28,12 +28,21 @@ export class DashboardComponent implements OnInit {
     this.route.parent.params.subscribe((params) => {
       let { id: pool } = params;
       this.pool_id = pool;
+      this.refreshData();
     });
 
+    setInterval(() => {
+      window.location.reload();
+    }, 180000);
+  }
+
+  refreshData() {
     // fetch portfolio
     this.http
       .get(`${environment.backendUrl}/pool/assets/${this.pool_id}`)
       .subscribe(async (response: any) => {
+        this.assets = [];
+
         try {
           for (let i = 0; i < response.length; i++) {
             let asset = response[i];
