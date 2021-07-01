@@ -53,15 +53,6 @@ export class AuthService {
           return user;
         })
       );
-
-    // return this.http.get(this.API_URL + 'profile')
-    // .map((response: any) => response.data)
-    // .map(u => UserModel.transform(u))
-    // .map((user) => {
-    //   // Now we have a "fresh" user we might as well replace the stored user.
-    //   this.storedUser.next(user);
-    //   return user;
-    // });
   }
 
   public authenticate(username: string, password: string): Observable<any> {

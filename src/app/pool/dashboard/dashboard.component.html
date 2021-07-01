@@ -26,7 +26,6 @@
       <tr *ngIf="asset.amount > 1">
         <td>{{ asset.id + 1 }}</td>
         <td>
-          <!-- <img src="{{ asset.icon }}" style="height: 18px" class="icon" /> -->
           {{ asset.name }}
         </td>
         <td>{{ asset.native_amount | number: "1.0-8" }} {{ asset.ticker }}</td>

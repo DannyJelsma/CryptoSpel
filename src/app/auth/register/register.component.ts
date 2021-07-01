@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserModel } from '../../_models/user';
 import { AuthService } from '../auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -17,6 +18,7 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -24,9 +26,9 @@ export class RegisterComponent implements OnInit {
 
   register(): void {
     this.authService.createUser(this.user).subscribe((user) => {
+      this.router.navigate(['']);
     }, (error: HttpErrorResponse) => {
       this.errorMessage = error.error.messages[0];
-      // this.validationService.validate(this.form, error);
     });
   }
 
