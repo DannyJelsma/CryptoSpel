@@ -13,14 +13,14 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   public username = 'username';
   public password = 'password';
+  public errorMessage = '';
 
   @ViewChild('form')
   private form: NgForm;
 
   constructor(
     private authService: AuthService,
-    private router: Router
-    // private validationService: FormService,
+    private router: Router,
   ) {}
 
   public login(): void {
@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit {
       console.log('success!');
     }, (error: HttpErrorResponse) => {
       console.log(error);
+      this.errorMessage = error.error.messages[0];
       // this.credentialsCheck(error);
       // this.validationService.validate(this.form, error);
     });

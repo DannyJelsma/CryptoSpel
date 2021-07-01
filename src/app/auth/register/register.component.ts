@@ -12,6 +12,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class RegisterComponent implements OnInit {
 
   public user: UserModel = new UserModel();
+  public errorMessage = '';
+
 
   constructor(
     private authService: AuthService,
@@ -23,6 +25,7 @@ export class RegisterComponent implements OnInit {
   register(): void {
     this.authService.createUser(this.user).subscribe((user) => {
     }, (error: HttpErrorResponse) => {
+      this.errorMessage = error.error.messages[0];
       // this.validationService.validate(this.form, error);
     });
   }

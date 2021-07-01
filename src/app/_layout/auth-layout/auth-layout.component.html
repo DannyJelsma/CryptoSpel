@@ -1,5 +1,11 @@
 <div class="pt-3 pt-sm-5 container">
   <app-header [innerClass]="'bg-transparent'"></app-header>
+
+  <div class="alert alert-danger alert-dismissible fade show" role="alert" *ngIf="errorMessage.length">
+    <strong>Error</strong> You should check in on some of those fields below.
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+
   <main>
     <router-outlet></router-outlet>
   </main>

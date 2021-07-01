@@ -16,11 +16,13 @@ export class CreateComponent implements OnInit {
     end_date: new FormControl(''),
   });
 
+  public errorMessage = '';
+
   constructor(private router: Router, private http: HttpClient) {}
 
   ngOnInit(): void {}
 
-  submitForm() {
+  submitForm(): void {
     // do HTTP request
     // => success -> redirect to pool with id
     // => no success -> show error
@@ -32,6 +34,7 @@ export class CreateComponent implements OnInit {
       budget,
       end_date,
     });
+    this.errorMessage = 'Please fill the required inputs';
     this.http
       .post(`${environment.backendUrl}/pool/create`, {
         name,

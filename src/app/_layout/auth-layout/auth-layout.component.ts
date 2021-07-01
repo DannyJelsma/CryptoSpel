@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, ElementRef, OnInit } from '@angular/core';
+import { ErrorMessageService } from '../../_shared/error-message.service';
 
 @Component({
   selector: 'app-auth-layout',
@@ -7,12 +8,17 @@ import { AfterViewInit, Component, ElementRef, OnInit } from '@angular/core';
 })
 export class AuthLayoutComponent implements OnInit, AfterViewInit {
 
-  constructor(private elementRef: ElementRef) { }
+  public errorMessage = this.errorMessageService.message;
+
+  constructor(
+    private elementRef: ElementRef,
+    private errorMessageService: ErrorMessageService
+  ) { }
 
   ngOnInit(): void { }
 
   ngAfterViewInit(): void {
-    this.elementRef.nativeElement.ownerDocument.body.className = 'bg-secondary'; // gradient
+    this.elementRef.nativeElement.ownerDocument.body.className = 'bg-secondary';
   }
 
 }

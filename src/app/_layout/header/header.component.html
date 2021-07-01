@@ -1,20 +1,16 @@
 <nav class="navbar mb-2 navbar-dark navbar-expand" [class]="innerClass">
   <div class="container">
-    <a href="/" class="navbar-brand p-0">
+    <a href="/" class="navbar-brand p-0 d-flex flex-row">
       <img
-        src="assets/img/angular_logo_text.png"
-        alt="Angular logo"
+        src="assets/img/bitcoin-icon.png"
+        alt="Bitcoin logo"
         height="50"
         class="pr-2"
       />
+      <h5 class="pt-2 ms-3">Crypto Spel</h5>
     </a>
 
     <ul class="navbar-nav me-1">
-      <!-- <li class="nav-item" *ngIf="isAuthenticated()">
-        <a href="pool/create" target="_self" class="nav-link">
-          Create pool
-        </a>
-      </li> -->
       <li class="nav-item" *ngIf="!isAuthenticated()">
         <a href="login" target="_self" class="nav-link"> Login </a>
       </li>
