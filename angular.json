@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angular-setup": {
+    "cryptospel": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/angular-setup/browser",
+            "outputPath": "dist/cryptospel/browser",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -68,18 +68,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "angular-setup:build"
+            "browserTarget": "cryptospel:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "angular-setup:build:production"
+              "browserTarget": "cryptospel:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "angular-setup:build"
+            "browserTarget": "cryptospel:build"
           }
         },
         "test": {
@@ -118,18 +118,18 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "angular-setup:serve"
+            "devServerTarget": "cryptospel:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "angular-setup:serve:production"
+              "devServerTarget": "cryptospel:serve:production"
             }
           }
         },
         "server": {
           "builder": "@angular-devkit/build-angular:server",
           "options": {
-            "outputPath": "dist/angular-setup/server",
+            "outputPath": "dist/cryptospel/server",
             "main": "src/main.server.ts",
             "tsConfig": "tsconfig.server.json"
           },
@@ -150,19 +150,19 @@
         "app-shell": {
           "builder": "@angular-devkit/build-angular:app-shell",
           "options": {
-            "browserTarget": "angular-setup:build",
-            "serverTarget": "angular-setup:server",
+            "browserTarget": "cryptospel:build",
+            "serverTarget": "cryptospel:server",
             "route": "shell"
           },
           "configurations": {
             "production": {
-              "browserTarget": "angular-setup:build:production",
-              "serverTarget": "angular-setup:server:production"
+              "browserTarget": "cryptospel:build:production",
+              "serverTarget": "cryptospel:server:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "angular-setup"
+  "defaultProject": "cryptospel"
 }
