@@ -29,11 +29,7 @@ export class CreateComponent implements OnInit {
 
     let { name, budget, end_date } = this.createPoolForm.value;
     end_date = new Date(end_date).getTime();
-    console.log({
-      name,
-      budget,
-      end_date,
-    });
+
     this.errorMessage = 'Please fill the required inputs';
     this.http
       .post(`${environment.backendUrl}/pool/create`, {

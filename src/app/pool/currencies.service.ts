@@ -16,7 +16,6 @@ export class CurrenciesService {
     return this.http
       .get<PoolModel.Currency[]>(environment.backendUrl + '/currencies')
       .pipe(
-        tap(() => console.log('fetched currencies')),
         catchError(this.handleError<any>('getCurrencies'))
       );
   }
@@ -42,11 +41,7 @@ export class CurrenciesService {
   // Source: https://angular.io/tutorial/toh-pt6#final-code-review
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-      // TODO: send the error to remote logging infrastructure
       console.error(error); // log to console instead
-
-      // TODO: better job of transforming error for user consumption
-      console.log(`${operation} failed: ${error.message}`);
 
       // Let the app keep running by returning an empty result.
       return of(result as T);
