@@ -3,7 +3,6 @@ import { UserModel } from '../_models/user';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-// @ts-ignore
 import { environment } from '@environment';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
@@ -18,26 +17,20 @@ export class AuthService {
   constructor(
     private http: HttpClient,
     private jwtHelper: JwtHelperService
-  ) {
-    // this.storage.get('user').then((user) => {
-    //   this.storedUser.next(user);
-    //
-    //   // When the user is changed it will be saved to local storage.
-    //   this.storedUser.subscribe(newUser => {
-    //     if (newUser == null) {
-    //       this.storage.remove('user');
-    //     } else {
-    //       this.storage.set('user', newUser);
-    //     }
-    //   });
-    // });
-  }
+  ) { }
 
-  public createUser(user: UserModel): Observable<UserModel[]> {
+  public createUser(user: UserModel): Observable<void> {
     return this.http
       .post(API_URL + 'register', user)
       .pipe(
-        map((response: any) => response.data.map((u) => UserModel.transform(u)))
+        map((response: any) => {
+
+          // When the response is successful the token and user can be saved.
+          if (response.success) {
+            localStorage.setItem('token', response.token);
+          }
+          return response;
+        })
       );
   }
 
@@ -66,19 +59,8 @@ export class AuthService {
         map((response: any) => {
           // When the response is successful the token and user can be saved.
           if (response.success) {
-            // this.storage.set('token', response.data.token);
             localStorage.setItem('token', response.token);
-            console.log('token');
-            console.log(response.token);
-
-            // this.storage.set('token', response.data.token).then(() =>
-            //   // The current user method will also set the user.
-            //   this.currentUser().subscribe(() => {
-            //     this.companyService.loadImage();
-            //   })
-            // );
           }
-          console.log(response);
           return response;
         })
       );
@@ -91,9 +73,6 @@ export class AuthService {
 
   public isAuthenticated(): boolean {
     const token = localStorage.getItem('token');
-    // console.log(this.jwtHelper.isTokenExpired(token));
-    // return false;
-    // return token ? !this.jwtHelper.isTokenExpired(token) : false;
     return !this.jwtHelper.isTokenExpired(token);
   }
 }

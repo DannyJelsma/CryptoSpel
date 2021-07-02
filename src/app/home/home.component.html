@@ -8,8 +8,11 @@
       <h5 class="card-title">{{ pool.name }}</h5>
       <p class="card-text">{{ pool.budget | currency: "EUR" }}</p>
     </div>
-    <div class="card-footer text-muted">
+    <div class="card-footer text-muted" *ngIf="pool.ends_in_days != 0">
       Ends in {{ pool.ends_in_days }} days
+    </div>
+    <div class="card-footer text-muted" *ngIf="pool.ends_in_days == 0">
+      Ends today
     </div>
   </div>
 

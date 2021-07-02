@@ -28,7 +28,7 @@ export class RegisterComponent implements OnInit {
     this.authService.createUser(this.user).subscribe((user) => {
       this.router.navigate(['']);
     }, (error: HttpErrorResponse) => {
-      this.errorMessage = error.error.messages[0];
+      this.router.navigate(['login']);
     });
   }
 
