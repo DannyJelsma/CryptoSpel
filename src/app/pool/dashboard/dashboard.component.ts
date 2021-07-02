@@ -65,7 +65,6 @@ export class DashboardComponent implements OnInit {
             (previous, current) => previous + current.amount,
             0
           );
-          console.log(response);
         } catch (err) {
           console.error(err);
         }

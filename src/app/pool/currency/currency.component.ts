@@ -131,14 +131,12 @@ export class CurrencyComponent implements OnInit {
   }
 
   refreshData() {
-    console.log("refresh");
     // find pool_id
     this.route.parent.params.subscribe((params) => {
       let { id: pool } = params;
       this.pool_id = pool;
     });
 
-    // TODO: change
     this.route.params.subscribe((params) => {
       let { name } = params;
 
